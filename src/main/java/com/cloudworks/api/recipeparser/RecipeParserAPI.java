@@ -23,11 +23,13 @@ import com.cloudworks.api.recipeparser.model.QueryMode;
 import com.cloudworks.api.recipeparser.model.RecipeData;
 import com.cloudworks.api.recipeparser.model.RecipeParseResult;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * Static API facade class for RecipeParser.
@@ -157,5 +159,123 @@ public class RecipeParserAPI {
     public static List<RecipeParseResult> parseUsageRecipe(
             ResourceLocation targetId, QueryMode mode, RecipeManager recipeManager) {
         return RecipeParser.getInstance().parseUsageRecipe(targetId, mode, recipeManager);
+    }
+
+    // ======================== Async API Methods ========================
+
+    /**
+ * Asynchronously gets the parsed data for the specified recipe ID.
+ * The heavy parsing work runs on the dedicated worker thread;
+ * the result callback is invoked on the server thread.
+ *
+ * 异步获取指定配方ID的解析数据。
+ * 繁重的解析工作运行在专用工作线程上；结果回调在服务器线程上调用。
+ *
+ * @param recipeId       the recipe ID / 配方ID
+ * @param recipeManager  the recipe manager / 配方管理器
+ * @param resultCallback callback invoked on server thread with the parsed data / 在服务器线程上调用的回调，接收解析数据
+ * @param errorCallback  callback invoked on server thread if an error occurs / 发生错误时在服务器线程上调用的回调
+ * @param server         the Minecraft server / Minecraft 服务器
+ */
+    public static void getRecipeDataAsync(
+            ResourceLocation recipeId,
+            RecipeManager recipeManager,
+            Consumer<RecipeData> resultCallback,
+            Consumer<String> errorCallback,
+            MinecraftServer server) {
+        AsyncRecipeParser.runAsyncQuery(
+            () -> getRecipeData(recipeId, recipeManager),
+            resultCallback,
+            errorCallback,
+            server
+        );
+    }
+
+    /**
+ * Asynchronously batch gets parsed data for multiple recipe IDs.
+ * The heavy parsing work runs on the dedicated worker thread;
+ * the result callback is invoked on the server thread.
+ *
+ * 异步批量获取多个配方ID的解析数据。
+ * 繁重的解析工作运行在专用工作线程上；结果回调在服务器线程上调用。
+ *
+ * @param recipeIds      the set of recipe IDs / 配方ID集合
+ * @param recipeManager  the recipe manager / 配方管理器
+ * @param resultCallback callback invoked on server thread with the parsed data map / 在服务器线程上调用的回调，接收解析数据映射
+ * @param errorCallback  callback invoked on server thread if an error occurs / 发生错误时在服务器线程上调用的回调
+ * @param server         the Minecraft server / Minecraft 服务器
+ */
+    public static void getRecipeDataBatchAsync(
+            Collection<ResourceLocation> recipeIds,
+            RecipeManager recipeManager,
+            Consumer<Map<ResourceLocation, RecipeData>> resultCallback,
+            Consumer<String> errorCallback,
+            MinecraftServer server) {
+        AsyncRecipeParser.runAsyncQuery(
+            () -> getRecipeDataBatch(recipeIds, recipeManager),
+            resultCallback,
+            errorCallback,
+            server
+        );
+    }
+
+    /**
+ * Asynchronously finds all recipes that produce the specified target item/fluid.
+ * The heavy scanning and parsing work runs on the dedicated worker thread;
+ * the result callback is invoked on the server thread.
+ *
+ * 异步查找所有产出指定目标物品/流体的配方。
+ * 繁重的扫描和解析工作运行在专用工作线程上；结果回调在服务器线程上调用。
+ *
+ * @param targetId       the target item or fluid ID / 目标物品或流体ID
+ * @param mode           the query mode (ITEM or FLUID) / 查询模式（ITEM 或 FLUID）
+ * @param recipeManager  the recipe manager / 配方管理器
+ * @param resultCallback callback invoked on server thread with the list of parse results / 在服务器线程上调用的回调，接收解析结果列表
+ * @param errorCallback  callback invoked on server thread if an error occurs / 发生错误时在服务器线程上调用的回调
+ * @param server         the Minecraft server / Minecraft 服务器
+ */
+    public static void parseProduceRecipeAsync(
+            ResourceLocation targetId,
+            QueryMode mode,
+            RecipeManager recipeManager,
+            Consumer<List<RecipeParseResult>> resultCallback,
+            Consumer<String> errorCallback,
+            MinecraftServer server) {
+        AsyncRecipeParser.runAsyncQuery(
+            () -> parseProduceRecipe(targetId, mode, recipeManager),
+            resultCallback,
+            errorCallback,
+            server
+        );
+    }
+
+    /**
+ * Asynchronously finds all recipes that use the specified target item/fluid as input.
+ * The heavy scanning and parsing work runs on the dedicated worker thread;
+ * the result callback is invoked on the server thread.
+ *
+ * 异步查找所有使用指定目标物品/流体作为输入的配方。
+ * 繁重的扫描和解析工作运行在专用工作线程上；结果回调在服务器线程上调用。
+ *
+ * @param targetId       the target item or fluid ID / 目标物品或流体ID
+ * @param mode           the query mode (ITEM or FLUID) / 查询模式（ITEM 或 FLUID）
+ * @param recipeManager  the recipe manager / 配方管理器
+ * @param resultCallback callback invoked on server thread with the list of parse results / 在服务器线程上调用的回调，接收解析结果列表
+ * @param errorCallback  callback invoked on server thread if an error occurs / 发生错误时在服务器线程上调用的回调
+ * @param server         the Minecraft server / Minecraft 服务器
+ */
+    public static void parseUsageRecipeAsync(
+            ResourceLocation targetId,
+            QueryMode mode,
+            RecipeManager recipeManager,
+            Consumer<List<RecipeParseResult>> resultCallback,
+            Consumer<String> errorCallback,
+            MinecraftServer server) {
+        AsyncRecipeParser.runAsyncQuery(
+            () -> parseUsageRecipe(targetId, mode, recipeManager),
+            resultCallback,
+            errorCallback,
+            server
+        );
     }
 }

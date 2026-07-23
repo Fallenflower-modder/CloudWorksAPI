@@ -1,3 +1,19 @@
 {
-  "type": "appleseed:simulate_recipe"
+  "type": "appleseed:simulate_recipe",
+  "inputs": [
+    <object,id=ingStruct>
+      "type": <unit,input_id=ing>
+      "id": <input,id=ing,count=1,unit=item>
+      "count": <count,input_id=ing>
+    </object>
+    <duplicate,id=dupIng,structure=ingStruct>
+  ],
+  "outputs": [
+    <object,id=resStruct>
+      "type": <unit,output_id=res>
+      "id": <output,id=res,count=1,unit=item>
+      "count": <count,output_id=res>
+    </object>
+    <duplicate,id=dupRes,structure=resStruct>
+  ]
 }

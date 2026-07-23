@@ -52,6 +52,7 @@ import org.slf4j.LoggerFactory;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -1299,9 +1300,23 @@ public class RecipeParser {
     public void onServerStarting(ServerStartingEvent event) {
         this.registryAccess = event.getServer().registryAccess();
         if (!enabled) return;
-        LOGGER.info("{} Server starting - triggering full recipe parse dump...", LOG_PREFIX);
+        LOGGER.info("{} Server starting - triggering full recipe parse dump (async)...", LOG_PREFIX);
         RecipeManager recipeManager = event.getServer().getRecipeManager();
-        DebugOutputWriter.writeDebugOutput(recipeManager, templateIndex);
+        DebugOutputWriter.writeDebugOutputAsync(recipeManager, templateIndex, event.getServer());
+    }
+
+    /**
+ * Server shutdown event callback, gracefully shuts down the async thread pool.
+ *
+ * 服务器关闭事件回调，优雅关闭异步线程池。
+ *
+ * @param event the server stopping event
+ * @param event 服务器停止事件
+ */
+    @SubscribeEvent
+    public void onServerStopping(ServerStoppingEvent event) {
+        LOGGER.info("{} Server stopping - shutting down async thread pool...", LOG_PREFIX);
+        AsyncRecipeParser.shutdown();
     }
 
     /**

@@ -26,6 +26,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import org.slf4j.Logger;
@@ -173,5 +174,20 @@ public class DebugOutputWriter {
         }
 
         LOGGER.info("{} Debug dump complete: {} parsed, {} failed. Output: {}", RecipeParser.LOG_PREFIX, totalParsed, totalFailed, outputDir.toAbsolutePath());
+    }
+
+    /**
+ * Asynchronously writes debug output for all parsable recipes.
+ * The heavy dump work is offloaded to the dedicated worker thread.
+ *
+ * 异步写入所有可解析配方的调试输出。
+ * 繁重的转储工作卸载到专用工作线程。
+ *
+ * @param recipeManager the recipe manager / 配方管理器
+ * @param templateIndex the template index / 模板索引
+ * @param server        the Minecraft server / Minecraft 服务器
+ */
+    public static void writeDebugOutputAsync(RecipeManager recipeManager, Map<String, Template> templateIndex, MinecraftServer server) {
+        AsyncRecipeParser.submit(() -> writeDebugOutput(recipeManager, templateIndex));
     }
 }

@@ -21,6 +21,7 @@ import com.cloudworks.api.command.DebugCommand;
 import com.cloudworks.api.recipeparser.ApiSelfTest;
 import com.cloudworks.api.recipeparser.RecipeParser;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -94,8 +95,14 @@ public class CloudWorksAPI {
  * @param event the register commands event
  * @param event 娉ㄥ唽鍛戒护浜嬩欢
  */
+    @SubscribeEvent
     private void onRegisterCommands(RegisterCommandsEvent event) {
-        LOGGER.info("CloudWorks API - Registering debug commands...");
-        DebugCommand.register(event.getDispatcher());
+        try {
+            LOGGER.info("CloudWorks API - Registering debug commands...");
+            DebugCommand.register(event.getDispatcher());
+            LOGGER.info("CloudWorks API - Debug commands registered successfully.");
+        } catch (Exception e) {
+            LOGGER.error("CloudWorks API - Failed to register debug commands: {}", e.getMessage(), e);
+        }
     }
 }

@@ -33,9 +33,11 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * CloudWorks debug command.
@@ -125,23 +127,26 @@ public class DebugCommand {
             return 0;
         }
 
-        RecipeManager recipeManager = source.getServer().getRecipeManager();
-        try {
-            RecipeData data = RecipeParser.getInstance().getRecipeData(recipeId, recipeManager);
-            source.sendSuccess(() -> Component.literal("=== Recipe: " + recipeId + " ==="), false);
-            source.sendSuccess(() -> Component.literal("Inputs:"), false);
-            for (Ingredient ing : data.getInputs()) {
-                source.sendSuccess(() -> Component.literal(
-                    String.format("  %s x%.1f (%s) [%s]", ing.getId(), ing.getCount(), ing.getUnit(), ing.getType())), false);
-            }
-            source.sendSuccess(() -> Component.literal("Outputs:"), false);
-            for (Product prod : data.getOutputs()) {
-                source.sendSuccess(() -> Component.literal(
-                    String.format("  %s x%.1f (%s) [%s]", prod.getId(), prod.getCount(), prod.getUnit(), prod.getType())), false);
-            }
-        } catch (Exception e) {
-            source.sendFailure(Component.literal("Error: " + e.getMessage()));
-        }
+        MinecraftServer server = source.getServer();
+        RecipeManager recipeManager = server.getRecipeManager();
+        RecipeParserAPI.getRecipeDataAsync(
+            recipeId, recipeManager,
+            data -> {
+                source.sendSuccess(() -> Component.literal("=== Recipe: " + recipeId + " ==="), false);
+                source.sendSuccess(() -> Component.literal("Inputs:"), false);
+                for (Ingredient ing : data.getInputs()) {
+                    source.sendSuccess(() -> Component.literal(
+                        String.format("  %s x%.1f (%s) [%s]", ing.getId(), ing.getCount(), ing.getUnit(), ing.getType())), false);
+                }
+                source.sendSuccess(() -> Component.literal("Outputs:"), false);
+                for (Product prod : data.getOutputs()) {
+                    source.sendSuccess(() -> Component.literal(
+                        String.format("  %s x%.1f (%s) [%s]", prod.getId(), prod.getCount(), prod.getUnit(), prod.getType())), false);
+                }
+            },
+            error -> source.sendFailure(Component.literal("Error: " + error)),
+            server
+        );
         return 1;
     }
 
@@ -153,25 +158,27 @@ public class DebugCommand {
         CommandSourceStack source = ctx.getSource();
         String modId = StringArgumentType.getString(ctx, "modid");
         String recipeType = StringArgumentType.getString(ctx, "recipetype");
-        RecipeManager recipeManager = source.getServer().getRecipeManager();
+        MinecraftServer server = source.getServer();
+        RecipeManager recipeManager = server.getRecipeManager();
 
         List<ResourceLocation> recipeIds = RecipeParser.getInstance().getParsableRecipes(modId, recipeType, recipeManager);
-        source.sendSuccess(() -> Component.literal("Found " + recipeIds.size() + " parsable recipes for " + modId + ":" + recipeType), false);
+        source.sendSuccess(() -> Component.literal("Found " + recipeIds.size() + " parsable recipes for " + modId + ":" + recipeType + ". Parsing in background..."), false);
 
-        int success = 0;
-        int failed = 0;
-        for (ResourceLocation id : recipeIds) {
-            try {
-                RecipeData data = RecipeParser.getInstance().getRecipeData(id, recipeManager);
-                success++;
-            } catch (Exception e) {
-                failed++;
-                source.sendSuccess(() -> Component.literal("  FAILED: " + id + " - " + e.getMessage()), false);
-            }
-        }
-        final int finalSuccess = success;
-        final int finalFailed = failed;
-        source.sendSuccess(() -> Component.literal("Complete: " + finalSuccess + " success, " + finalFailed + " failed"), false);
+        RecipeParserAPI.getRecipeDataBatchAsync(
+            recipeIds, recipeManager,
+            dataMap -> {
+                int success = dataMap.size();
+                int failed = recipeIds.size() - success;
+                source.sendSuccess(() -> Component.literal("Complete: " + success + " success, " + failed + " failed"), false);
+                for (ResourceLocation id : recipeIds) {
+                    if (!dataMap.containsKey(id)) {
+                        source.sendSuccess(() -> Component.literal("  FAILED: " + id), false);
+                    }
+                }
+            },
+            error -> source.sendFailure(Component.literal("Batch parse error: " + error)),
+            server
+        );
         return 1;
     }
 
@@ -190,24 +197,30 @@ public class DebugCommand {
         }
 
         QueryMode mode = "fluid".equalsIgnoreCase(modeStr) ? QueryMode.FLUID : QueryMode.ITEM;
-        RecipeManager recipeManager = source.getServer().getRecipeManager();
+        MinecraftServer server = source.getServer();
+        RecipeManager recipeManager = server.getRecipeManager();
 
-        List<RecipeParseResult> results = RecipeParser.getInstance().parseProduceRecipe(targetId, mode, recipeManager);
-        source.sendSuccess(() -> Component.literal("=== Recipes producing " + targetId + " (" + mode + ") ==="), false);
-        source.sendSuccess(() -> Component.literal("Found " + results.size() + " recipes"), false);
-
-        for (RecipeParseResult result : results) {
-            RecipeData data = result.getData();
-            source.sendSuccess(() -> Component.literal("  " + result.getRecipeId()), false);
-            for (Ingredient ing : data.getInputs()) {
-                source.sendSuccess(() -> Component.literal(
-                    String.format("    IN:  %s x%.1f", ing.getId(), ing.getCount())), false);
-            }
-            for (Product prod : data.getOutputs()) {
-                source.sendSuccess(() -> Component.literal(
-                    String.format("    OUT: %s x%.1f", prod.getId(), prod.getCount())), false);
-            }
-        }
+        RecipeParserAPI.parseProduceRecipeAsync(
+            targetId, mode, recipeManager,
+            results -> {
+                source.sendSuccess(() -> Component.literal("=== Recipes producing " + targetId + " (" + mode + ") ==="), false);
+                source.sendSuccess(() -> Component.literal("Found " + results.size() + " recipes"), false);
+                for (RecipeParseResult result : results) {
+                    RecipeData data = result.getData();
+                    source.sendSuccess(() -> Component.literal("  " + result.getRecipeId()), false);
+                    for (Ingredient ing : data.getInputs()) {
+                        source.sendSuccess(() -> Component.literal(
+                            String.format("    IN:  %s x%.1f", ing.getId(), ing.getCount())), false);
+                    }
+                    for (Product prod : data.getOutputs()) {
+                        source.sendSuccess(() -> Component.literal(
+                            String.format("    OUT: %s x%.1f", prod.getId(), prod.getCount())), false);
+                    }
+                }
+            },
+            error -> source.sendFailure(Component.literal("Error: " + error)),
+            server
+        );
         return 1;
     }
 
@@ -226,24 +239,30 @@ public class DebugCommand {
         }
 
         QueryMode mode = "fluid".equalsIgnoreCase(modeStr) ? QueryMode.FLUID : QueryMode.ITEM;
-        RecipeManager recipeManager = source.getServer().getRecipeManager();
+        MinecraftServer server = source.getServer();
+        RecipeManager recipeManager = server.getRecipeManager();
 
-        List<RecipeParseResult> results = RecipeParser.getInstance().parseUsageRecipe(targetId, mode, recipeManager);
-        source.sendSuccess(() -> Component.literal("=== Recipes using " + targetId + " (" + mode + ") ==="), false);
-        source.sendSuccess(() -> Component.literal("Found " + results.size() + " recipes"), false);
-
-        for (RecipeParseResult result : results) {
-            RecipeData data = result.getData();
-            source.sendSuccess(() -> Component.literal("  " + result.getRecipeId()), false);
-            for (Ingredient ing : data.getInputs()) {
-                source.sendSuccess(() -> Component.literal(
-                    String.format("    IN:  %s x%.1f", ing.getId(), ing.getCount())), false);
-            }
-            for (Product prod : data.getOutputs()) {
-                source.sendSuccess(() -> Component.literal(
-                    String.format("    OUT: %s x%.1f", prod.getId(), prod.getCount())), false);
-            }
-        }
+        RecipeParserAPI.parseUsageRecipeAsync(
+            targetId, mode, recipeManager,
+            results -> {
+                source.sendSuccess(() -> Component.literal("=== Recipes using " + targetId + " (" + mode + ") ==="), false);
+                source.sendSuccess(() -> Component.literal("Found " + results.size() + " recipes"), false);
+                for (RecipeParseResult result : results) {
+                    RecipeData data = result.getData();
+                    source.sendSuccess(() -> Component.literal("  " + result.getRecipeId()), false);
+                    for (Ingredient ing : data.getInputs()) {
+                        source.sendSuccess(() -> Component.literal(
+                            String.format("    IN:  %s x%.1f", ing.getId(), ing.getCount())), false);
+                    }
+                    for (Product prod : data.getOutputs()) {
+                        source.sendSuccess(() -> Component.literal(
+                            String.format("    OUT: %s x%.1f", prod.getId(), prod.getCount())), false);
+                    }
+                }
+            },
+            error -> source.sendFailure(Component.literal("Error: " + error)),
+            server
+        );
         return 1;
     }
 
