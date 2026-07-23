@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": <input,id=baseItem,count=1,unit=item,type=solid>
+    "tag": <input,id=baseTag,count=1,unit=item,type=tag>
+  },
+  "addition": {
+    "item": <input,id=addItem,count=1,unit=item,type=solid>
+    "tag": <input,id=addTag,count=1,unit=item,type=tag>
+  },
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

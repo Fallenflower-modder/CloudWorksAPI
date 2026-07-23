@@ -1,0 +1,7 @@
+{
+  "type": "youkaisfeasts:cuisine_fixed",
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

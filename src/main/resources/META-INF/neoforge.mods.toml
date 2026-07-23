@@ -1,0 +1,10 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "cloudworks_api"
+version = "1.0.0_dev.1-1.21.1"
+displayName = "CloudWorks API"
+description = "API mod for DrownedCloud's works"

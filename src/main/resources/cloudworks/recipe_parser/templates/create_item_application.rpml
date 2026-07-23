@@ -1,0 +1,23 @@
+{
+  "type": "create:item_application",
+  <optional,id=optProcessingTime>
+    "processing_time": 350
+  </optional>
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingTag,count=1,unit=item,type=tag>
+      "fluid": <input,id=ingFluid,count=1,unit=fluid,type=fluid>
+    </object>
+    <duplicate,id=dupIng,structure=ingStruct>
+  ],
+  "results": [
+    <object,id=resStruct>
+      "count": <count,output_id=res>
+      "amount": <amount,output_id=res>
+      "chance": <chance,output_id=res>
+      "id": <output,id=res,count=1,unit=item,type=solid>
+    </object>
+    <duplicate,id=dupRes,structure=resStruct>
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>
+    "tag": <input,id=ingTag,count=1,unit=item,type=tag>
+  },
+  "results": [
+    <object,id=resStruct>
+      "chance": <chance,output_id=res>
+      "count": <count,output_id=res>
+      "id": <output,id=res,count=1,unit=item,type=solid>
+    </object>
+    <duplicate,id=dupRes,structure=resStruct>
+  ]
+}

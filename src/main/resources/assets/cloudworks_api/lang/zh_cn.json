@@ -1,0 +1,23 @@
+{
+  "cloudworks_api.command.parse.player_only": "此命令只能由玩家执行。",
+  "cloudworks_api.command.parse.no_held_item": "你手中没有持有任何物品。",
+  "cloudworks_api.command.parse.invalid_id": "无效的ID：%s",
+  "cloudworks_api.command.parse.not_found": "未找到配方或物品，ID：%s",
+  "cloudworks_api.command.parse.not_enabled": "RecipeParser模块未启动，请检查模组配置。",
+  "cloudworks_api.command.parse.no_recipes_for_item": "未找到产出该物品的配方：%s",
+  "cloudworks_api.command.parse.no_recipes_for_fluid": "未找到产出该流体的配方：%s",
+  "cloudworks_api.command.parse.recipe_not_found": "未找到配方：%s",
+  "cloudworks_api.command.parse.parse_error": "解析配方 %s 失败：%s",
+  "cloudworks_api.command.parse.header_item": "找到 %2$s 个产出 \u00a7e%1$s\u00a7r 的配方：",
+  "cloudworks_api.command.parse.header_fluid": "找到 %2$s 个产出流体 \u00a7e%1$s\u00a7r 的配方：",
+  "cloudworks_api.command.parse.header_recipe": "解析配方 \u00a7e%s\u00a7r：",
+  "cloudworks_api.command.parse.recipe_line": "  \u00a7a配方：\u00a7r %s",
+  "cloudworks_api.command.parse.inputs_header": "  \u00a7b原料：\u00a7r",
+  "cloudworks_api.command.parse.outputs_header": "  \u00a7c产物：\u00a7r",
+  "cloudworks_api.command.parse.ingredient_line": "    \u00a77- %s \u00d7%s %s [%s]\u00a7r",
+  "cloudworks_api.command.parse.ingredient_line_fluid": "    \u00a77- %s \u00d7%s mB [%s]\u00a7r",
+  "cloudworks_api.command.parse.product_line": "    \u00a77- %s \u00d7%s %s [%s]\u00a7r",
+  "cloudworks_api.command.parse.product_line_fluid": "    \u00a77- %s \u00d7%s mB [%s]\u00a7r",
+  "cloudworks_api.command.parse.product_line_rate": "    \u00a77- %s \u00d7%s %s [%s] \u00a76(%.0f%%)\u00a7r",
+  "cloudworks_api.command.parse.product_line_rate_fluid": "    \u00a77- %s \u00d7%s mB [%s] \u00a76(%.0f%%)\u00a7r"
+}
