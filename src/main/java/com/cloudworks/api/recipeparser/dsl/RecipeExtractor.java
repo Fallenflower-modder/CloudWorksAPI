@@ -185,10 +185,14 @@ public class RecipeExtractor {
  * @param context      涓婁笅鏂?
  */
     private void extractObject(TemplateNode templateNode, JsonObject jsonObject, Map<String, Object> context) {
-        // Check if this object has an OBJECT marker child for dynamic-key handling
+        // Check if this object has an OBJECT marker child for dynamic-key handling.
+        // Only match direct OBJECT markers (child.getKey() == null), NOT those wrapped
+        // in KEY_VALUE nodes (e.g., "result": <object,id=result>). KEY_VALUE-wrapped
+        // OBJECT markers are processed by the normal key-matching loop below.
         TemplateNode structureNode = null;
         for (TemplateNode child : templateNode.getChildren()) {
-            if (child.getMarker() != null
+            if (child.getKey() == null
+                && child.getMarker() != null
                 && child.getMarker().getMarkerType() == MarkerDef.MarkerType.OBJECT) {
                 structureNode = child;
                 break;
@@ -401,9 +405,20 @@ public class RecipeExtractor {
                 extractOptional(templateNode, jsonElement, context, index);
                 break;
             case OBJECT:
-                // Object as structure - handled by extractStructureDuplicated
+                // Object as structure - handled by extractStructureDuplicated.
+                // Resolve keys for KEY_VALUE children so that wrapped markers
+                // (e.g., "id": <output>) receive the correct JSON value instead
+                // of the entire parent object.
                 for (TemplateNode child : templateNode.getChildren()) {
-                    extractNode(child, jsonElement, context);
+                    if (child.getKey() != null && jsonElement.isJsonObject()) {
+                        String key = child.getKey();
+                        JsonElement value = jsonElement.getAsJsonObject().get(key);
+                        if (value != null) {
+                            extractNode(child, value, context);
+                        }
+                    } else {
+                        extractNode(child, jsonElement, context);
+                    }
                 }
                 break;
             case MATRIX:

@@ -84,7 +84,7 @@ public class MarkerDef {
         /**
      * Script marker, used to execute global settings scripts
      */
-    /** 鑴氭湰鏍囪锛岀敤浜庢墽琛屽叏灞€璁剧疆鑴氭湰 */
+    /** 脚本标记，用于执行全局设置脚本 */
         SCRIPT
     }
 

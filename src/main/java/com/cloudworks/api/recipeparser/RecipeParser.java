@@ -161,6 +161,30 @@ public class RecipeParser {
     private final Map<String, Map<String, TemplateConfig>> templateConfigs = new HashMap<>();
 
     /**
+     * Output reverse index: item/fluid ID -> list of recipe IDs that produce it.
+     * Built on server start, used by parseProduceRecipe() for O(1) lookup.
+     */
+    /** 输出反向索引：物品/流体ID -> 产出该物品的配方ID列表 */
+    private final Map<String, List<ResourceLocation>> outputIndex = new HashMap<>();
+    /**
+     * Input reverse index: item/fluid ID -> list of recipe IDs that use it as input.
+     * Built on server start, used by parseUsageRecipe() for O(1) lookup.
+     */
+    /** 输入反向索引：物品/流体ID -> 使用该物品作为输入的配方ID列表 */
+    private final Map<String, List<ResourceLocation>> inputIndex = new HashMap<>();
+    /**
+     * Recipe data cache: recipe ID -> parsed RecipeData.
+     * Populated during index building, avoids redundant JSON serialization + extraction.
+     */
+    /** 配方数据缓存：配方ID -> 解析后的配方数据 */
+    private final Map<ResourceLocation, RecipeData> recipeDataCache = new LinkedHashMap<>();
+    /**
+     * Whether the reverse indexes have been built.
+     */
+    /** 反向索引是否已构建 */
+    private boolean indexesBuilt = false;
+
+    /**
  * Gets the RecipeParser singleton instance.
  *
  * 鑾峰彇 RecipeParser 鍗曚緥瀹炰緥銆?
@@ -868,6 +892,12 @@ public class RecipeParser {
             throw new RecipeParseException("RecipeParser module is not enabled");
         }
 
+        // Check cache first
+        RecipeData cached = recipeDataCache.get(recipeId);
+        if (cached != null) {
+            return cached;
+        }
+
         Optional<RecipeHolder<?>> recipeOpt = recipeManager.byKey(recipeId);
         if (recipeOpt.isEmpty()) {
             throw new RecipeNotFoundException("Recipe not found: " + recipeId);
@@ -888,7 +918,10 @@ public class RecipeParser {
             // Serialize recipe to JSON
             JsonElement recipeJson = serializeRecipe(recipe);
             RecipeExtractor extractor = new RecipeExtractor(template, recipeJson, recipeId.toString());
-            return extractor.extract();
+            RecipeData data = extractor.extract();
+            // Cache the result
+            recipeDataCache.put(recipeId, data);
+            return data;
         } catch (Exception e) {
             LOGGER.error("{} ========================================", LOG_PREFIX);
             LOGGER.error("{} Recipe Extraction Failed", LOG_PREFIX);
@@ -998,21 +1031,18 @@ public class RecipeParser {
         List<RecipeParseResult> results = new ArrayList<>();
 
         if (mode == QueryMode.ITEM) {
-            // Direct getResultItem matches
-            for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
-                try {
-                    ItemStack result = holder.value().getResultItem(null);
-                    if (!result.isEmpty()) {
-                        ResourceLocation resultId = BuiltInRegistries.ITEM.getKey(result.getItem());
-                        if (targetId.equals(resultId)) {
-                            RecipeData data = getRecipeData(holder.id(), recipeManager);
-                            results.add(new RecipeParseResult(holder.id(), data));
-                        }
-                    }
-                } catch (Exception ignored) {}
+            // Use reverse index for O(1) lookup
+            List<ResourceLocation> matchingIds = outputIndex.get(targetId.toString());
+            if (matchingIds != null) {
+                for (ResourceLocation rid : matchingIds) {
+                    try {
+                        RecipeData data = getRecipeData(rid, recipeManager);
+                        results.add(new RecipeParseResult(rid, data));
+                    } catch (Exception ignored) {}
+                }
             }
 
-            // Fluid->item transfer matches
+            // Fluid->item transfer matches (need to check recipes with fluid outputs)
             for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
                 try {
                     ResourceLocation rid = holder.id();
@@ -1036,17 +1066,15 @@ public class RecipeParser {
             }
 
         } else {
-            // FLUID mode: direct fluid output matches
-            for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
-                try {
-                    RecipeData data = getRecipeData(holder.id(), recipeManager);
-                    for (Product prod : data.getOutputs()) {
-                        if ("fluid".equals(prod.getUnit()) && targetId.toString().equals(prod.getId())) {
-                            results.add(new RecipeParseResult(holder.id(), data));
-                            break;
-                        }
-                    }
-                } catch (Exception ignored) {}
+            // FLUID mode: use reverse index for fluid output lookup
+            List<ResourceLocation> matchingIds = outputIndex.get(targetId.toString());
+            if (matchingIds != null) {
+                for (ResourceLocation rid : matchingIds) {
+                    try {
+                        RecipeData data = getRecipeData(rid, recipeManager);
+                        results.add(new RecipeParseResult(rid, data));
+                    } catch (Exception ignored) {}
+                }
             }
 
             // Also check fluid->item transfer reverse-match
@@ -1095,29 +1123,15 @@ public class RecipeParser {
     public List<RecipeParseResult> parseUsageRecipe(ResourceLocation targetId, QueryMode mode, RecipeManager recipeManager) {
         List<RecipeParseResult> results = new ArrayList<>();
 
-        for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
-            try {
-                RecipeData data = getRecipeData(holder.id(), recipeManager);
-                boolean matches = false;
-
-                for (Ingredient ing : data.getInputs()) {
-                    if (mode == QueryMode.ITEM && "item".equals(ing.getUnit())) {
-                        if (targetId.toString().equals(ing.getId())) {
-                            matches = true;
-                            break;
-                        }
-                    } else if (mode == QueryMode.FLUID && "fluid".equals(ing.getUnit())) {
-                        if (targetId.toString().equals(ing.getId())) {
-                            matches = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (matches) {
-                    results.add(new RecipeParseResult(holder.id(), data));
-                }
-            } catch (Exception ignored) {}
+        // Use reverse index for O(1) lookup
+        List<ResourceLocation> matchingIds = inputIndex.get(targetId.toString());
+        if (matchingIds != null) {
+            for (ResourceLocation rid : matchingIds) {
+                try {
+                    RecipeData data = getRecipeData(rid, recipeManager);
+                    results.add(new RecipeParseResult(rid, data));
+                } catch (Exception ignored) {}
+            }
         }
 
         return results;
@@ -1283,6 +1297,100 @@ public class RecipeParser {
         return recipe.getType().toString();
     }
 
+    // --- Index Building & Cache Management ---
+
+    /**
+     * Builds reverse indexes (outputIndex, inputIndex) and populates the recipe data cache.
+     *
+     * 构建反向索引（outputIndex, inputIndex）并填充配方数据缓存。
+     * <p>
+     * 在服务器启动时调用，遍历所有配方，解析每个可解析的配方，
+     * 同时填充输出索引、输入索引和配方数据缓存。
+     * 索引构建完成后，后续查询可通过 O(1) 查找获取匹配的配方列表。
+     * </p>
+     *
+     * @param recipeManager the recipe manager
+     * @param recipeManager 配方管理器
+     */
+    public void buildIndexes(RecipeManager recipeManager) {
+        if (!enabled) return;
+        if (indexesBuilt) {
+            LOGGER.info("{} Indexes already built, skipping.", LOG_PREFIX);
+            return;
+        }
+
+        LOGGER.info("{} Building reverse indexes and populating cache...", LOG_PREFIX);
+        long startTime = System.currentTimeMillis();
+
+        outputIndex.clear();
+        inputIndex.clear();
+        recipeDataCache.clear();
+
+        int parsedCount = 0;
+        int skippedCount = 0;
+        int totalRecipes = recipeManager.getRecipes().size();
+
+        for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
+            ResourceLocation recipeId = holder.id();
+            if (recipeId == null) {
+                skippedCount++;
+                continue;
+            }
+
+            try {
+                RecipeData data = getRecipeData(recipeId, recipeManager);
+                // Already cached by getRecipeData()
+
+                // Populate output index
+                for (Product prod : data.getOutputs()) {
+                    String prodId = prod.getId();
+                    if (prodId != null && !prodId.isEmpty()) {
+                        outputIndex.computeIfAbsent(prodId, k -> new ArrayList<>()).add(recipeId);
+                    }
+                }
+
+                // Populate input index
+                for (Ingredient ing : data.getInputs()) {
+                    String ingId = ing.getId();
+                    if (ingId != null && !ingId.isEmpty()) {
+                        inputIndex.computeIfAbsent(ingId, k -> new ArrayList<>()).add(recipeId);
+                    }
+                }
+
+                parsedCount++;
+            } catch (Exception e) {
+                skippedCount++;
+            }
+        }
+
+        indexesBuilt = true;
+        long elapsed = System.currentTimeMillis() - startTime;
+
+        LOGGER.info("{} ========================================", LOG_PREFIX);
+        LOGGER.info("{} Index Building Complete", LOG_PREFIX);
+        LOGGER.info("{} * Total recipes : {}", LOG_PREFIX, totalRecipes);
+        LOGGER.info("{} * Parsed        : {}", LOG_PREFIX, parsedCount);
+        LOGGER.info("{} * Skipped       : {}", LOG_PREFIX, skippedCount);
+        LOGGER.info("{} * Output index entries : {}", LOG_PREFIX, outputIndex.size());
+        LOGGER.info("{} * Input index entries  : {}", LOG_PREFIX, inputIndex.size());
+        LOGGER.info("{} * Cache size    : {}", LOG_PREFIX, recipeDataCache.size());
+        LOGGER.info("{} * Time elapsed  : {} ms", LOG_PREFIX, elapsed);
+        LOGGER.info("{} ========================================", LOG_PREFIX);
+    }
+
+    /**
+     * Invalidates the indexes and cache, forcing a rebuild on next query.
+     *
+     * 使索引和缓存失效，强制下次查询时重建。
+     */
+    public void invalidateIndexes() {
+        indexesBuilt = false;
+        outputIndex.clear();
+        inputIndex.clear();
+        recipeDataCache.clear();
+        LOGGER.info("{} Indexes and cache invalidated.", LOG_PREFIX);
+    }
+
     // --- Debug Output ---
 
     /**
@@ -1300,9 +1408,19 @@ public class RecipeParser {
     public void onServerStarting(ServerStartingEvent event) {
         this.registryAccess = event.getServer().registryAccess();
         if (!enabled) return;
-        LOGGER.info("{} Server starting - triggering full recipe parse dump (async)...", LOG_PREFIX);
+        LOGGER.info("{} Server starting - building indexes and triggering debug dump...", LOG_PREFIX);
         RecipeManager recipeManager = event.getServer().getRecipeManager();
-        DebugOutputWriter.writeDebugOutputAsync(recipeManager, templateIndex, event.getServer());
+
+        // Build reverse indexes asynchronously (populates cache as side effect)
+        AsyncRecipeParser.submit(() -> {
+            try {
+                buildIndexes(recipeManager);
+                // Trigger debug output after indexes are built
+                DebugOutputWriter.writeDebugOutputAsync(recipeManager, templateIndex, event.getServer());
+            } catch (Exception e) {
+                LOGGER.error("{} Failed to build indexes: {}", LOG_PREFIX, e.getMessage());
+            }
+        });
     }
 
     /**

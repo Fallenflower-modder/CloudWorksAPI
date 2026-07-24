@@ -69,7 +69,7 @@ public class CloudWorksAPI {
     public CloudWorksAPI(IEventBus modEventBus) {
         LOGGER.info("CloudWorks API initializing...");
         modEventBus.addListener(this::onCommonSetup);
-        NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
+        NeoForge.EVENT_BUS.register(this);
     }
 
     /**
@@ -82,9 +82,15 @@ public class CloudWorksAPI {
  */
     private void onCommonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("CloudWorks API - Initializing modules...");
-        RecipeParser.getInstance().initialize();
-        NeoForge.EVENT_BUS.register(RecipeParser.getInstance());
-        NeoForge.EVENT_BUS.register(new ApiSelfTest());
+        try {
+            RecipeParser.getInstance().initialize();
+            NeoForge.EVENT_BUS.register(RecipeParser.getInstance());
+            NeoForge.EVENT_BUS.register(new ApiSelfTest());
+            LOGGER.info("CloudWorks API - RecipeParser module initialized successfully.");
+        } catch (Exception e) {
+            LOGGER.error("CloudWorks API - RecipeParser initialization failed: {}", e.getMessage(), e);
+            LOGGER.warn("CloudWorks API - Debug commands will be available but RecipeParser features will be disabled.");
+        }
     }
 
     /**

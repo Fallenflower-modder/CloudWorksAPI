@@ -27,13 +27,14 @@ import com.cloudworks.api.recipeparser.model.Product;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
@@ -42,70 +43,122 @@ import java.util.Map;
 /**
  * CloudWorks debug command.
  *
- * CloudWorks 璋冭瘯鍛戒护銆?
+ * CloudWorks 调试命令。
  * <p>
- * 鎻愪緵 Minecraft 娓告垙鍐呭懡浠わ紝鐢ㄤ簬娴嬭瘯鍜岃皟璇曢厤鏂硅В鏋愬櫒鍔熻兘銆?
- * 鏀寔浠ヤ笅瀛愬懡浠わ細
+ * 提供 Minecraft 游戏内命令，用于测试和调试配方解析器及其他模块功能。
+ * 作为所有模块调试指令的统一入口点。
+ * 支持以下子命令：
  * <ul>
- *   <li>/cw listtemplates - 鍒楀嚭鎵€鏈夊凡鍔犺浇鐨勬ā鏉?/li>
- *   <li>/cw parse &lt;recipe_id&gt; - 瑙ｆ瀽鎸囧畾閰嶆柟</li>
- *   <li>/cw parsebatch &lt;modid&gt; &lt;recipetype&gt; - 鎵归噺瑙ｆ瀽鎸囧畾绫诲瀷鐨勯厤鏂?/li>
- *   <li>/cw produce &lt;item_or_fluid&gt; [item|fluid] - 鏌ユ壘浜у嚭鎸囧畾鐗╁搧/娴佷綋鐨勯厤鏂?/li>
- *   <li>/cw usage &lt;item_or_fluid&gt; [item|fluid] - 鏌ユ壘浣跨敤鎸囧畾鐗╁搧/娴佷綋浣滀负杈撳叆鐨勯厤鏂?/li>
- *   <li>/cw status - 鏌ョ湅 RecipeParser 妯″潡鐘舵€?/li>
+ *   <li>/cloudworks recipe listtemplates - 列出所有已加载的模板</li>
+ *   <li>/cloudworks recipe parse &lt;produce|usage&gt; &lt;item|liquid&gt; [&lt;itemID|fluidID&gt;] - 查找配方（不填ID则使用手持物品）</li>
+ *   <li>/cloudworks recipe parsebatch &lt;modid&gt; &lt;recipetype&gt; - 批量解析指定类型的配方</li>
+ *   <li>/cloudworks status - 查看模块状态</li>
  * </ul>
  * </p>
  */
 public class DebugCommand {
 
     /**
-     * Command description prefix
+     * 检查 RecipeParser 模块是否就绪，未就绪时发送失败消息。
      */
-    /** 鍛戒护鎻忚堪鍓嶇紑 */
-    private static final String HELP_PREFIX = "CloudWorks RecipeParser Debug Command";
-
-    /**
- * Registers the debug command with the command dispatcher.
- *
- * 灏嗚皟璇曞懡浠ゆ敞鍐屽埌鍛戒护璋冨害鍣ㄣ€?
- *
- * @param dispatcher the command dispatcher
- * @param dispatcher 鍛戒护璋冨害鍣?
- */
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
-        dispatcher.register(
-            Commands.literal("cw")
-                .then(Commands.literal("listtemplates")
-                    .executes(DebugCommand::listTemplates))
-                .then(Commands.literal("parse")
-                    .then(Commands.argument("recipe_id", StringArgumentType.string())
-                        .suggests(RecipeIdSuggestionProvider.INSTANCE)
-                        .executes(DebugCommand::parseRecipe)))
-                .then(Commands.literal("parsebatch")
-                    .then(Commands.argument("modid", StringArgumentType.string())
-                        .then(Commands.argument("recipetype", StringArgumentType.string())
-                            .executes(DebugCommand::parseBatch))))
-                .then(Commands.literal("produce")
-                    .then(Commands.argument("target", StringArgumentType.string())
-                        .then(Commands.argument("mode", StringArgumentType.word())
-                            .suggests((ctx, builder) -> SharedSuggestionProvider.suggest(List.of("item", "fluid"), builder))
-                            .executes(DebugCommand::produceRecipe))))
-                .then(Commands.literal("usage")
-                    .then(Commands.argument("target", StringArgumentType.string())
-                        .then(Commands.argument("mode", StringArgumentType.word())
-                            .suggests((ctx, builder) -> SharedSuggestionProvider.suggest(List.of("item", "fluid"), builder))
-                            .executes(DebugCommand::usageRecipe))))
-                .then(Commands.literal("status")
-                    .executes(DebugCommand::status))
-        );
+    private static boolean requireParserReady(CommandSourceStack source) {
+        if (!RecipeParser.getInstance().isEnabled()) {
+            source.sendFailure(Component.literal(
+                "RecipeParser module is not enabled. This command requires RecipeParser to be running.\n" +
+                "Check server logs for initialization errors."
+            ));
+            return false;
+        }
+        return true;
     }
 
     /**
-     * Command handler for listing all loaded templates.
+     * 从执行者手持物品中获取目标 ID。
+     * 如果执行者不是玩家或没有手持物品，返回 null（调用方应发送提示）。
      */
-    /** 鍒楀嚭鎵€鏈夊凡鍔犺浇妯℃澘鐨勫懡浠ゅ鐞嗐€?*/
+    private static String resolveTargetFromHeldItem(CommandSourceStack source) {
+        try {
+            ServerPlayer player = source.getPlayerOrException();
+            ItemStack held = player.getMainHandItem();
+            if (held.isEmpty()) {
+                source.sendFailure(Component.literal("No item in hand. Please specify an item/fluid ID."));
+                return null;
+            }
+            ResourceLocation id = BuiltInRegistries.ITEM.getKey(held.getItem());
+            source.sendSuccess(() -> Component.literal("Using held item: " + id), false);
+            return id.toString();
+        } catch (Exception e) {
+            source.sendFailure(Component.literal(
+                "This command must be executed by a player or with an explicit item/fluid ID."
+            ));
+            return null;
+        }
+    }
+
+    /**
+     * 将调试命令注册到命令调度器。
+     */
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+        dispatcher.register(
+            Commands.literal("cloudworks")
+                // /cloudworks - 显示帮助
+                .executes(DebugCommand::help)
+                // /cloudworks status - 查看模块状态
+                .then(Commands.literal("status")
+                    .executes(DebugCommand::status))
+                // /cloudworks recipe ... - 配方模块指令
+                .then(Commands.literal("recipe")
+                    .then(Commands.literal("listtemplates")
+                        .executes(DebugCommand::listTemplates))
+                    .then(Commands.literal("parsebatch")
+                        .then(Commands.argument("modid", StringArgumentType.string())
+                            .then(Commands.argument("recipetype", StringArgumentType.string())
+                                .executes(DebugCommand::parseBatch))))
+                    .then(Commands.literal("parse")
+                        // /cloudworks recipe parse produce item [itemID]
+                        .then(Commands.literal("produce")
+                            .then(Commands.literal("item")
+                                .executes(DebugCommand::parseProduceItemNoArg)
+                                .then(Commands.argument("item_id", StringArgumentType.greedyString())
+                                    .executes(DebugCommand::parseProduceItem)))
+                            .then(Commands.literal("liquid")
+                                .executes(DebugCommand::parseProduceLiquidNoArg)
+                                .then(Commands.argument("fluid_id", StringArgumentType.greedyString())
+                                    .executes(DebugCommand::parseProduceLiquid))))
+                        // /cloudworks recipe parse usage item [itemID]
+                        .then(Commands.literal("usage")
+                            .then(Commands.literal("item")
+                                .executes(DebugCommand::parseUsageItemNoArg)
+                                .then(Commands.argument("item_id", StringArgumentType.greedyString())
+                                    .executes(DebugCommand::parseUsageItem)))
+                            .then(Commands.literal("liquid")
+                                .executes(DebugCommand::parseUsageLiquidNoArg)
+                                .then(Commands.argument("fluid_id", StringArgumentType.greedyString())
+                                    .executes(DebugCommand::parseUsageLiquid)))))
+                )
+        );
+    }
+
+    // ======================== 帮助命令 ========================
+
+    private static int help(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack source = ctx.getSource();
+        source.sendSuccess(() -> Component.literal("=== CloudWorks Debug Commands ==="), false);
+        source.sendSuccess(() -> Component.literal("/cloudworks status"), false);
+        source.sendSuccess(() -> Component.literal("/cloudworks recipe listtemplates"), false);
+        source.sendSuccess(() -> Component.literal("/cloudworks recipe parse produce|usage item|liquid [id]"), false);
+        source.sendSuccess(() -> Component.literal("/cloudworks recipe parsebatch <modid> <recipetype>"), false);
+        return 1;
+    }
+
+    // ======================== 命令处理函数 ========================
+
+    /**
+     * 列出所有已加载模板的命令处理。
+     */
     private static int listTemplates(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack source = ctx.getSource();
+        if (!requireParserReady(source)) return 0;
         java.util.Set<String> keys = RecipeParser.getInstance().getAllTemplateKeys();
         source.sendSuccess(() -> Component.literal("=== Loaded Templates (" + keys.size() + ") ==="), false);
         for (String key : keys) {
@@ -115,47 +168,11 @@ public class DebugCommand {
     }
 
     /**
-     * Command handler for parsing a single recipe.
+     * 批量解析命令处理。
      */
-    /** 瑙ｆ瀽鍗曚釜閰嶆柟鍛戒护澶勭悊銆?*/
-    private static int parseRecipe(CommandContext<CommandSourceStack> ctx) {
-        CommandSourceStack source = ctx.getSource();
-        String recipeIdStr = StringArgumentType.getString(ctx, "recipe_id");
-        ResourceLocation recipeId = ResourceLocation.tryParse(recipeIdStr);
-        if (recipeId == null) {
-            source.sendFailure(Component.literal("Invalid recipe ID: " + recipeIdStr));
-            return 0;
-        }
-
-        MinecraftServer server = source.getServer();
-        RecipeManager recipeManager = server.getRecipeManager();
-        RecipeParserAPI.getRecipeDataAsync(
-            recipeId, recipeManager,
-            data -> {
-                source.sendSuccess(() -> Component.literal("=== Recipe: " + recipeId + " ==="), false);
-                source.sendSuccess(() -> Component.literal("Inputs:"), false);
-                for (Ingredient ing : data.getInputs()) {
-                    source.sendSuccess(() -> Component.literal(
-                        String.format("  %s x%.1f (%s) [%s]", ing.getId(), ing.getCount(), ing.getUnit(), ing.getType())), false);
-                }
-                source.sendSuccess(() -> Component.literal("Outputs:"), false);
-                for (Product prod : data.getOutputs()) {
-                    source.sendSuccess(() -> Component.literal(
-                        String.format("  %s x%.1f (%s) [%s]", prod.getId(), prod.getCount(), prod.getUnit(), prod.getType())), false);
-                }
-            },
-            error -> source.sendFailure(Component.literal("Error: " + error)),
-            server
-        );
-        return 1;
-    }
-
-    /**
-     * Command handler for batch parsing.
-     */
-    /** 鎵归噺瑙ｆ瀽鍛戒护澶勭悊銆?*/
     private static int parseBatch(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack source = ctx.getSource();
+        if (!requireParserReady(source)) return 0;
         String modId = StringArgumentType.getString(ctx, "modid");
         String recipeType = StringArgumentType.getString(ctx, "recipetype");
         MinecraftServer server = source.getServer();
@@ -182,21 +199,51 @@ public class DebugCommand {
         return 1;
     }
 
-    /**
-     * Command handler for finding recipes that produce a target.
-     */
-    /** 鏌ユ壘浜у嚭閰嶆柟鍛戒护澶勭悊銆?*/
-    private static int produceRecipe(CommandContext<CommandSourceStack> ctx) {
+    // ======================== produce item ========================
+
+    /** /cloudworks recipe parse produce item - 使用手持物品ID */
+    private static int parseProduceItemNoArg(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack source = ctx.getSource();
-        String targetStr = StringArgumentType.getString(ctx, "target");
-        String modeStr = StringArgumentType.getString(ctx, "mode");
+        if (!requireParserReady(source)) return 0;
+        String targetStr = resolveTargetFromHeldItem(source);
+        if (targetStr == null) return 0;
+        return executeProduceQuery(source, targetStr, QueryMode.ITEM);
+    }
+
+    /** /cloudworks recipe parse produce item <itemID> */
+    private static int parseProduceItem(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack source = ctx.getSource();
+        if (!requireParserReady(source)) return 0;
+        String targetStr = StringArgumentType.getString(ctx, "item_id");
+        return executeProduceQuery(source, targetStr, QueryMode.ITEM);
+    }
+
+    // ======================== produce liquid ========================
+
+    /** /cloudworks recipe parse produce liquid - 使用手持物品ID */
+    private static int parseProduceLiquidNoArg(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack source = ctx.getSource();
+        if (!requireParserReady(source)) return 0;
+        String targetStr = resolveTargetFromHeldItem(source);
+        if (targetStr == null) return 0;
+        return executeProduceQuery(source, targetStr, QueryMode.FLUID);
+    }
+
+    /** /cloudworks recipe parse produce liquid <fluidID> */
+    private static int parseProduceLiquid(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack source = ctx.getSource();
+        if (!requireParserReady(source)) return 0;
+        String targetStr = StringArgumentType.getString(ctx, "fluid_id");
+        return executeProduceQuery(source, targetStr, QueryMode.FLUID);
+    }
+
+    private static int executeProduceQuery(CommandSourceStack source, String targetStr, QueryMode mode) {
         ResourceLocation targetId = ResourceLocation.tryParse(targetStr);
         if (targetId == null) {
             source.sendFailure(Component.literal("Invalid target ID: " + targetStr));
             return 0;
         }
 
-        QueryMode mode = "fluid".equalsIgnoreCase(modeStr) ? QueryMode.FLUID : QueryMode.ITEM;
         MinecraftServer server = source.getServer();
         RecipeManager recipeManager = server.getRecipeManager();
 
@@ -224,21 +271,51 @@ public class DebugCommand {
         return 1;
     }
 
-    /**
-     * Command handler for finding recipes that use a target as input.
-     */
-    /** 鏌ユ壘浣跨敤閰嶆柟鍛戒护澶勭悊銆?*/
-    private static int usageRecipe(CommandContext<CommandSourceStack> ctx) {
+    // ======================== usage item ========================
+
+    /** /cloudworks recipe parse usage item - 使用手持物品ID */
+    private static int parseUsageItemNoArg(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack source = ctx.getSource();
-        String targetStr = StringArgumentType.getString(ctx, "target");
-        String modeStr = StringArgumentType.getString(ctx, "mode");
+        if (!requireParserReady(source)) return 0;
+        String targetStr = resolveTargetFromHeldItem(source);
+        if (targetStr == null) return 0;
+        return executeUsageQuery(source, targetStr, QueryMode.ITEM);
+    }
+
+    /** /cloudworks recipe parse usage item <itemID> */
+    private static int parseUsageItem(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack source = ctx.getSource();
+        if (!requireParserReady(source)) return 0;
+        String targetStr = StringArgumentType.getString(ctx, "item_id");
+        return executeUsageQuery(source, targetStr, QueryMode.ITEM);
+    }
+
+    // ======================== usage liquid ========================
+
+    /** /cloudworks recipe parse usage liquid - 使用手持物品ID */
+    private static int parseUsageLiquidNoArg(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack source = ctx.getSource();
+        if (!requireParserReady(source)) return 0;
+        String targetStr = resolveTargetFromHeldItem(source);
+        if (targetStr == null) return 0;
+        return executeUsageQuery(source, targetStr, QueryMode.FLUID);
+    }
+
+    /** /cloudworks recipe parse usage liquid <fluidID> */
+    private static int parseUsageLiquid(CommandContext<CommandSourceStack> ctx) {
+        CommandSourceStack source = ctx.getSource();
+        if (!requireParserReady(source)) return 0;
+        String targetStr = StringArgumentType.getString(ctx, "fluid_id");
+        return executeUsageQuery(source, targetStr, QueryMode.FLUID);
+    }
+
+    private static int executeUsageQuery(CommandSourceStack source, String targetStr, QueryMode mode) {
         ResourceLocation targetId = ResourceLocation.tryParse(targetStr);
         if (targetId == null) {
             source.sendFailure(Component.literal("Invalid target ID: " + targetStr));
             return 0;
         }
 
-        QueryMode mode = "fluid".equalsIgnoreCase(modeStr) ? QueryMode.FLUID : QueryMode.ITEM;
         MinecraftServer server = source.getServer();
         RecipeManager recipeManager = server.getRecipeManager();
 
@@ -266,37 +343,23 @@ public class DebugCommand {
         return 1;
     }
 
+    // ======================== status 命令处理 ========================
+
     /**
-     * Command handler for viewing module status.
+     * 查看模块状态的命令处理。
      */
-    /** 鏌ョ湅妯″潡鐘舵€佸懡浠ゅ鐞嗐€?*/
     private static int status(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack source = ctx.getSource();
         RecipeParser parser = RecipeParser.getInstance();
-        source.sendSuccess(() -> Component.literal("=== CloudWorks RecipeParser Status ==="), false);
-        source.sendSuccess(() -> Component.literal("Enabled: " + parser.isEnabled()), false);
-        source.sendSuccess(() -> Component.literal("Templates: " + parser.getAllTemplateKeys().size()), false);
-        return 1;
-    }
-
-    /**
-     * Recipe ID suggestion provider, offers auto-completion for all parsable recipes.
-     */
-    /** 閰嶆柟ID寤鸿鎻愪緵鍣紝鎻愪緵鎵€鏈夊彲瑙ｆ瀽閰嶆柟鐨勮嚜鍔ㄨˉ鍏ㄣ€?*/
-    private enum RecipeIdSuggestionProvider implements SuggestionProvider<CommandSourceStack> {
-        INSTANCE;
-
-        @Override
-        public java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> getSuggestions(
-                CommandContext<CommandSourceStack> ctx,
-                com.mojang.brigadier.suggestion.SuggestionsBuilder builder) {
-            RecipeManager recipeManager = ctx.getSource().getServer().getRecipeManager();
-            for (var entry : recipeManager.getRecipes()) {
-                if (entry.id() != null) {
-                    builder.suggest(entry.id().toString());
-                }
-            }
-            return builder.buildFuture();
+        source.sendSuccess(() -> Component.literal("=== CloudWorks Module Status ==="), false);
+        boolean enabled = parser.isEnabled();
+        source.sendSuccess(() -> Component.literal("RecipeParser Enabled: " + enabled), false);
+        if (enabled) {
+            source.sendSuccess(() -> Component.literal("Templates: " + parser.getAllTemplateKeys().size()), false);
+        } else {
+            source.sendSuccess(() -> Component.literal("RecipeParser module is disabled. Check server logs for errors."), false);
         }
+        source.sendSuccess(() -> Component.literal("Debug Commands: Active"), false);
+        return 1;
     }
 }
