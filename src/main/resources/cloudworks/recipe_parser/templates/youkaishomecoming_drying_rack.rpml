@@ -1,0 +1,11 @@
+{
+  "type": "youkaishomecoming:drying_rack",
+  "ingredient": <object,id=ingredientObj>
+    "item": <input,id=ingredient,count=1,unit=item,type=solid>
+  <count,id=ingredientCount,input_id=ingredient>
+  </object>
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}
