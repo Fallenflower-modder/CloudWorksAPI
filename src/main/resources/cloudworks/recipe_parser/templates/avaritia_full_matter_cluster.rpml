@@ -1,0 +1,11 @@
+{
+  "type": "avaritia:full_matter_cluster",
+  "group": "matter_cluster",
+  "ingredients": [
+    <object,id=ingredientsStruct>
+      "item": <input,id=ingredientsItem,count=1,unit=item,type=solid>
+    <count,id=ingredientsCount,input_id=ingredientsItem>
+    <duplicate,id=dupIngredientsStruct,structure=ingredientsStruct>
+    </object>
+  ]
+}

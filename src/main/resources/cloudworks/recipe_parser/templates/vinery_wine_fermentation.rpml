@@ -1,0 +1,19 @@
+{
+  "type": "vinery:wine_fermentation",
+  "ingredients": [
+    <object,id=ingredientsStruct>
+      "item": <input,id=ingredientsItem,count=1,unit=item,type=solid>
+    <count,id=ingredientsCount,input_id=ingredientsItem>
+    <duplicate,id=dupIngredientsStruct,structure=ingredientsStruct>
+    </object>
+  ]
+  "juice": <object,id=juice>
+    "type": <value,id=juiceType>
+    "amount": <amount,input_id=juice>
+  </object>
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+  "wine_bottle": {"required": true},
+}

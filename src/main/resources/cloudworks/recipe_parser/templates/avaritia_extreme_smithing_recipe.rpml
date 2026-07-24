@@ -1,0 +1,23 @@
+{
+  "type": "avaritia:extreme_smithing_recipe",
+  "addition": [
+    <object,id=additionStruct>
+      "item": <input,id=additionItem,count=1,unit=item,type=solid>
+      "tag": <input,id=additionItem,count=1,unit=item,type=tag>
+    <count,id=additionCount,input_id=additionItem>
+    <duplicate,id=dupAdditionStruct,structure=additionStruct>
+    </object>
+  ]
+  "base": {
+    "item": <input,id=baseItem,count=1,unit=item,type=solid>
+    "tag": <input,id=baseItem,count=1,unit=item,type=tag>
+  },
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+  "template": {
+    "item": <input,id=tplItem,count=1,unit=item,type=solid>
+    "tag": <input,id=tplItem,count=1,unit=item,type=tag>
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "ars_nouveau:potion_flask",
+  "category": "misc",
+  "ingredients": [
+    <object,id=ingredientsStruct>
+      "item": <input,id=ingredientsItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingredientsItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupIngredientsStruct,structure=ingredientsStruct>
+    </object>
+  ]
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

@@ -1,0 +1,18 @@
+{
+  "type": "ars_nouveau:crush",
+  "input": <object,id=inputObj>
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  </object>
+  "output": [
+    <object,id=outputStruct>
+      "chance": <chance,output_id=outputItem>
+      "maxRange": 1,
+      "stack": <object,id=stack>
+        "count": <count,output_id=outputItem>
+        "id": <output,id=outputItem,count=1,unit=item,type=solid>
+      </object>
+    <duplicate,id=dupOutput,structure=outputStruct>
+    </object>
+  ]
+}

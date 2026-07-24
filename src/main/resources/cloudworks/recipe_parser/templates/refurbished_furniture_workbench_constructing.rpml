@@ -1,0 +1,17 @@
+{
+  "type": "refurbished_furniture:workbench_constructing",
+  "materials": [
+    <object,id=matStruct>
+      "count": <count,input_id=mat>
+      "ingredient": <object,id=matIng>
+        "item": <input,id=mat,count=1,unit=item,type=solid>
+        "tag": <input,id=mat,count=1,unit=item,type=tag>
+    <duplicate,id=dupMatStruct,structure=matStruct>
+      </object>
+    </object>
+  ]
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

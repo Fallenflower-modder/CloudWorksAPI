@@ -1,0 +1,19 @@
+{
+  "type": "ars_nouveau:imbuement",
+  "input": <object,id=inputObj>
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  </object>
+  "output": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+  "pedestalItems": [
+    <object,id=pedestalItem>
+      "item": <input,id=pedestalItem,count=1,unit=item,type=solid>
+      "tag": <input,id=pedestalItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupPedestalItem,structure=pedestalItem>
+    </object>
+  ]
+  "source": 500
+}

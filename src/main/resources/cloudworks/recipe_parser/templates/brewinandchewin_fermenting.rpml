@@ -1,0 +1,30 @@
+{
+  "type": "brewinandchewin:fermenting",
+  "base_fluid": <optional,id=optBaseFluid>
+    "base_fluid": <object,id=baseFluid>
+      "amount": <amount,input_id=baseFluid>
+      "ingredient": <object,id=baseFluidIng>
+        "id": <input,id=baseFluid,count=1,unit=fluid,type=fluid>
+        "tag": <input,id=baseFluid,count=1,unit=fluid,type=tag>
+      </object>
+      "unit": <value,id=baseFluidUnit>
+    </object>
+  </optional>
+  "ingredients": [
+    <object,id=ingredientsStruct>
+      "item": <input,id=ingredientsItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingredientsItem,count=1,unit=item,type=tag>
+    <count,id=ingredientsCount,input_id=ingredientsItem>
+    <duplicate,id=dupIngredientsStruct,structure=ingredientsStruct>
+    </object>
+  ]
+  "result": <object,id=result>
+    <optional,id=optCount>
+      "count": <count,output_id=result>
+    </optional>
+    <optional,id=optAmount>
+      "amount": <amount,output_id=result>
+    </optional>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}
