@@ -1424,17 +1424,21 @@ public class RecipeParser {
     }
 
     /**
- * Server shutdown event callback, gracefully shuts down the async thread pool.
+ * Server shutdown event callback, invalidates indexes and cache for the next world.
+ * The async thread pool is NOT shut down here because it is shared across server
+ * instances (e.g., when switching saves). Daemon threads do not prevent JVM exit.
  *
- * 服务器关闭事件回调，优雅关闭异步线程池。
+ * 服务器关闭事件回调，使索引和缓存失效以准备下一个世界。
+ * 此处不关闭异步线程池，因为它在服务器实例之间共享（例如切换存档时）。
+ * 守护线程不会阻止 JVM 退出。
  *
  * @param event the server stopping event
  * @param event 服务器停止事件
  */
     @SubscribeEvent
     public void onServerStopping(ServerStoppingEvent event) {
-        LOGGER.info("{} Server stopping - shutting down async thread pool...", LOG_PREFIX);
-        AsyncRecipeParser.shutdown();
+        LOGGER.info("{} Server stopping - invalidating indexes and cache...", LOG_PREFIX);
+        invalidateIndexes();
     }
 
     /**
