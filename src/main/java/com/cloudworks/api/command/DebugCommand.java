@@ -17,6 +17,10 @@
  */
 package com.cloudworks.api.command;
 
+import com.cloudworks.api.consoleseeker.ConsoleSeekerCommand;
+import com.cloudworks.api.consoleseeker.ConsoleSeekerConfig;
+import com.cloudworks.api.consoleseeker.ConsoleSeekerEventManager;
+import com.cloudworks.api.consoleseeker.LogToChatManager;
 import com.cloudworks.api.recipeparser.RecipeParser;
 import com.cloudworks.api.recipeparser.RecipeParserAPI;
 import com.cloudworks.api.recipeparser.model.QueryMode;
@@ -29,6 +33,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -38,7 +43,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * CloudWorks debug command.
@@ -53,6 +57,8 @@ import java.util.Map;
  *   <li>/cloudworks recipe parse &lt;produce|usage&gt; &lt;item|liquid&gt; [&lt;itemID|fluidID&gt;] - 查找配方（不填ID则使用手持物品）</li>
  *   <li>/cloudworks recipe parsebatch &lt;modid&gt; &lt;recipetype&gt; - 批量解析指定类型的配方</li>
  *   <li>/cloudworks status - 查看模块状态</li>
+ *   <li>/cloudworks console &lt;info|warn|error&gt; &lt;on|off&gt; - 控制台日志输出到聊天栏</li>
+ *   <li>/cloudworks config console player_list &lt;add|remove|query&gt; - 管理 ConsoleSeeker player_list</li>
  * </ul>
  * </p>
  */
@@ -106,6 +112,31 @@ public class DebugCommand {
                 // /cloudworks status - 查看模块状态
                 .then(Commands.literal("status")
                     .executes(DebugCommand::status))
+                // /cloudworks console <info|warn|error> <on|off> - 控制台日志输出到聊天栏
+                .then(Commands.literal("console")
+                    .requires(ConsoleSeekerCommand::canUseConsole)
+                    .then(Commands.argument("level", StringArgumentType.word())
+                        .suggests((ctx, builder) ->
+                            SharedSuggestionProvider.suggest(new String[]{"info", "warn", "error"}, builder))
+                        .then(Commands.argument("action", StringArgumentType.word())
+                            .suggests((ctx, builder) ->
+                                SharedSuggestionProvider.suggest(new String[]{"on", "off"}, builder))
+                            .executes(ConsoleSeekerCommand::executeConsole))))
+                // /cloudworks config console player_list <add|remove> <player_name> - 管理 ConsoleSeeker player_list
+                .then(Commands.literal("config")
+                    .then(Commands.literal("console")
+                        .then(Commands.literal("player_list")
+                            .then(Commands.literal("add")
+                                .requires(source -> source.getEntity() == null)
+                                .then(Commands.argument("player_name", StringArgumentType.word())
+                                    .executes(ConsoleSeekerCommand::executeConfigPlayerListAdd)))
+                            .then(Commands.literal("remove")
+                                .requires(source -> source.getEntity() == null)
+                                .then(Commands.argument("player_name", StringArgumentType.word())
+                                    .executes(ConsoleSeekerCommand::executeConfigPlayerListRemove)))
+                            .then(Commands.literal("query")
+                                .requires(source -> source.getEntity() == null || source.hasPermission(4))
+                                .executes(ConsoleSeekerCommand::executeConfigPlayerListQuery)))))
                 // /cloudworks recipe ... - 配方模块指令
                 .then(Commands.literal("recipe")
                     .then(Commands.literal("listtemplates")
@@ -148,6 +179,9 @@ public class DebugCommand {
         source.sendSuccess(() -> Component.literal("/cloudworks recipe listtemplates"), false);
         source.sendSuccess(() -> Component.literal("/cloudworks recipe parse produce|usage item|liquid [id]"), false);
         source.sendSuccess(() -> Component.literal("/cloudworks recipe parsebatch <modid> <recipetype>"), false);
+        source.sendSuccess(() -> Component.literal("/cloudworks console <info|warn|error> <on|off>"), false);
+        source.sendSuccess(() -> Component.literal("/cloudworks config console player_list add|remove <player>"), false);
+        source.sendSuccess(() -> Component.literal("/cloudworks config console player_list query"), false);
         return 1;
     }
 
@@ -350,15 +384,34 @@ public class DebugCommand {
      */
     private static int status(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack source = ctx.getSource();
-        RecipeParser parser = RecipeParser.getInstance();
         source.sendSuccess(() -> Component.literal("=== CloudWorks Module Status ==="), false);
+
+        // RecipeParser 状态
+        RecipeParser parser = RecipeParser.getInstance();
         boolean enabled = parser.isEnabled();
         source.sendSuccess(() -> Component.literal("RecipeParser Enabled: " + enabled), false);
         if (enabled) {
-            source.sendSuccess(() -> Component.literal("Templates: " + parser.getAllTemplateKeys().size()), false);
+            source.sendSuccess(() -> Component.literal("  Templates: " + parser.getAllTemplateKeys().size()), false);
         } else {
-            source.sendSuccess(() -> Component.literal("RecipeParser module is disabled. Check server logs for errors."), false);
+            source.sendSuccess(() -> Component.literal("  RecipeParser module is disabled. Check server logs for errors."), false);
         }
+
+        // ConsoleSeeker 状态
+        if (ConsoleSeekerConfig.isEnableModule()) {
+            source.sendSuccess(() -> Component.literal("ConsoleSeeker: Active"), false);
+            source.sendSuccess(() -> Component.literal("  Enabled Levels: ")
+                    .append(LogToChatManager.getEnabledLevelsComponent()), false);
+            source.sendSuccess(() -> Component.literal("  All OPs: " + ConsoleSeekerConfig.isEnableCommandForAnyOperator()), false);
+            if (!ConsoleSeekerConfig.isEnableCommandForAnyOperator()) {
+                source.sendSuccess(() -> Component.literal("  List Type: " + ConsoleSeekerConfig.getListType()), false);
+                source.sendSuccess(() -> Component.literal("  Player List: " + ConsoleSeekerConfig.getPlayerListCopy().size() + " entries"), false);
+            }
+            source.sendSuccess(() -> Component.literal("  API: " + (ConsoleSeekerEventManager.isApiEnabled() ? "Enabled" : "Disabled")), false);
+            source.sendSuccess(() -> Component.literal("  Internal Filter Units: " + ConsoleSeekerEventManager.getInternalFilterUnitCount()), false);
+        } else {
+            source.sendSuccess(() -> Component.literal("ConsoleSeeker: Disabled (enable_module = false)"), false);
+        }
+
         source.sendSuccess(() -> Component.literal("Debug Commands: Active"), false);
         return 1;
     }
