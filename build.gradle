@@ -7,10 +7,15 @@ repositories {
     mavenLocal()
     maven { url = 'https://neoforged.forgecdn.net/releases' }
     maven { url = 'https://neoforged.forgecdn.net/mojang-meta' }
+    maven { url = "https://api.modrinth.com/maven" }
     mavenCentral()
 }
 
-version = '1.0.0-1.21.1'
+ext {
+    jade_version = "15.10.5+neoforge"
+}
+
+version = '1.1.0-1.21.1'
 base.archivesName = 'CloudWorksAPI'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -37,6 +42,10 @@ neoForge {
             sourceSet sourceSets.main
         }
     }
+}
+
+dependencies {
+    compileOnly "maven.modrinth:jade:${jade_version}"
 }
 
 processResources {
