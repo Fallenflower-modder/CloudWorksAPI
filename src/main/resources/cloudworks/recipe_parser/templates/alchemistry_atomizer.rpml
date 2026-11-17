@@ -1,0 +1,14 @@
+{
+  "type": "alchemistry:atomizer",
+  <script,set_global_fluid_transfer=true>
+  "input": {
+    "amount": <amount,input_id=fl>
+    "fluid": <input,id=fl,count=1,unit=fluid,type=fluid>
+    "tag": <input,id=fl,count=1,unit=fluid,type=tag>
+  },
+  "result": {
+    "count": <count,output_id=res>
+    "item": <output,id=res,count=1,unit=item,type=solid>
+    "tag": <output,id=res,count=1,unit=item,type=tag>
+  }
+}

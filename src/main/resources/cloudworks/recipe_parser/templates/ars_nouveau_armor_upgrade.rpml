@@ -1,0 +1,12 @@
+{
+  "type": "ars_nouveau:armor_upgrade",
+  "pedestalItems": [
+    <object,id=pedestalItem>
+      "item": <input,id=pedestalItem,count=1,unit=item,type=solid>
+      "tag": <input,id=pedestalItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupPedestalItem,structure=pedestalItem>
+    </object>
+  ]
+  "sourceCost": 2500,
+  "tier": 1
+}

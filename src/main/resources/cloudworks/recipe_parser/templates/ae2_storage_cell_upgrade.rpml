@@ -1,0 +1,7 @@
+{
+  "type": "ae2:storage_cell_upgrade",
+  "input_cell": <input,id=inCell,count=1,unit=item,type=solid>,
+  "input_component": <input,id=inComp,count=1,unit=item,type=solid>,
+  "result_cell": <output,id=resCell,count=1,unit=item,type=solid>,
+  "result_component": <output,id=resComp,count=1,unit=item,type=solid>
+}

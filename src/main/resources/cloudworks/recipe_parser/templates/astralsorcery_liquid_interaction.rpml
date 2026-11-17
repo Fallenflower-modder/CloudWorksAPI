@@ -1,0 +1,23 @@
+<script,set_global_fluid_transfer=true>
+{
+  "type": "astralsorcery:liquid_interaction",
+  "reactantA": {
+    "amount": <amount,input_id=flA>
+    "ingredient": {
+      "fluid": <input,id=flA,count=1,unit=fluid,type=fluid>
+    }
+  },
+  "reactantB": {
+    "amount": <amount,input_id=flB>
+    "ingredient": {
+      "fluid": <input,id=flB,count=1,unit=fluid,type=fluid>
+    }
+  },
+  "result": {
+    "type": "astralsorcery:drop_item",
+    "output": {
+      "count": <count,output_id=res>
+      "id": <output,id=res,count=1,unit=item,type=solid>
+    }
+  }
+}

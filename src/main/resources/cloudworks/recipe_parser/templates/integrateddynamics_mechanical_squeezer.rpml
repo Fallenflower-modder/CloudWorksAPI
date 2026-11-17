@@ -1,0 +1,22 @@
+{
+  "type": "integrateddynamics:mechanical_squeezer",
+  "input_item": {
+    "item": <input,id=inputItem,count=1,unit=item,type=solid>
+    "tag": <input,id=inputItem,count=1,unit=item,type=tag>
+  },
+  "output_fluid": {
+    "id": <output,id=outFluid,count=1,unit=fluid,type=fluid>
+    "amount": <amount,output_id=outFluid>
+  },
+  "output_items": [
+    <object,id=outStruct>
+      "item": <object,id=outItemStruct>
+        "id": <output,id=out,count=1,unit=item,type=solid>
+        "count": <count,output_id=out>
+      </object>
+      "chance": <chance,output_id=out>
+    <duplicate,id=dupOut,structure=outStruct>
+    </object>
+  ],
+  "duration": 15
+}

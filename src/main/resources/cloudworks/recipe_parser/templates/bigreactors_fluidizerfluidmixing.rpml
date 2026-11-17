@@ -1,0 +1,16 @@
+<script,set_global_fluid_transfer=true>
+{
+  "type": "bigreactors:fluidizerfluidmixing",
+  "ingredient1": {
+    "amount": <amount,id=fl1Amt,input_id=fl1>
+    "id": <input,id=fl1,count=1,unit=fluid,type=fluid>
+  },
+  "ingredient2": {
+    "amount": <amount,id=fl2Amt,input_id=fl2>
+    "id": <input,id=fl2,count=1,unit=fluid,type=fluid>
+  },
+  "result": {
+    "amount": <amount,output_id=resFl>
+    "id": <output,id=resFl,count=1,unit=fluid,type=fluid>
+  }
+}

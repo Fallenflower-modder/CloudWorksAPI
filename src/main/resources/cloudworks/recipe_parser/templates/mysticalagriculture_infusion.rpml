@@ -1,0 +1,18 @@
+{
+  "type": "mysticalagriculture:infusion",
+  "ingredients": [
+    <object,id=ingStruct>
+      "crop": <input,id=ingCrop,count=1,unit=item,type=solid>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "input": {
+    "item": <input,id=reqItem,count=1,unit=item,type=solid>
+    "tag": <input,id=reqItem,count=1,unit=item,type=tag>
+    "crop": <input,id=reqCrop,count=1,unit=item,type=solid>
+  },
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

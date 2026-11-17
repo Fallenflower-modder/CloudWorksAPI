@@ -1,0 +1,15 @@
+{
+  "type": "alchemistry:compactor",
+  "input": {
+    "count": <count,input_id=ing>
+    "ingredient": {
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+    }
+  },
+  "result": {
+    "count": <count,output_id=res>
+    "item": <output,id=res,count=1,unit=item,type=solid>
+    "tag": <output,id=res,count=1,unit=item,type=tag>
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "immersiveengineering:blueprint",
+  "category": "warning_sign",
+  "inputs": [
+    <object,id=inputStruct>
+      "item": <input,id=input,count=1,unit=item,type=solid>
+      "tag": <input,id=input,count=1,unit=item,type=tag>
+    <duplicate,id=dupInput,structure=inputStruct>
+    </object>
+  ],
+  "result": <object,id=resStruct>
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  </object>
+}

@@ -1,0 +1,11 @@
+{
+  "type": "productivebees:bee_spawning",
+  "ingredient": {
+    "item": <input,id=nest,count=1,unit=item,type=solid>
+    "tag": <input,id=nest,count=1,unit=item,type=tag>
+  },
+  "results": [
+    "productivebees:mason_bee"
+  ],
+  "biomes": "#c:is_overworld"
+}

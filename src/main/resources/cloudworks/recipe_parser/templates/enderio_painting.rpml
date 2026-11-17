@@ -1,0 +1,11 @@
+{
+  "type": "enderio:painting",
+  "input": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "count": <count,output_id=out>
+    "id": <output,id=out,count=1,unit=item,type=solid>
+  }
+}

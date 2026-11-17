@@ -1,0 +1,11 @@
+{
+  "type": "exdeorum:water_crucible",
+  "ingredient": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "fluid": {
+    "amount": <amount,output_id=fl>
+    "id": <output,id=fl,count=1,unit=fluid,type=fluid>
+  }
+}

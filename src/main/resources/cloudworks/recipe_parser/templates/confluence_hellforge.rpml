@@ -1,0 +1,20 @@
+{
+  "type": "confluence:hellforge",
+  "ingredients": [
+    <object,id=ingStruct>
+      "type": "confluence_magic_lib:amount_ingredient",
+      "count": <count,id=ingCount,input_id=ing>
+      "ingredient": {
+        "item": <input,id=ing,count=1,unit=item,type=solid>
+        "tag": <input,id=ing,count=1,unit=item,type=tag>
+      }
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+    </object>
+    <duplicate,id=dupIng,structure=ingStruct>
+  ],
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

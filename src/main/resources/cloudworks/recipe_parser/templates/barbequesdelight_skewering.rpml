@@ -1,0 +1,20 @@
+{
+  "type": "barbequesdelight:skewering",
+  "ingredient": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "ingredientCount": <count,input_id=ing>,
+  "output": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  },
+  "side": {
+    "item": <input,id=sideIng,count=1,unit=item,type=solid>
+    "tag": <input,id=sideIng,count=1,unit=item,type=tag>
+  },
+  "sideCount": <count,input_id=sideIng>,
+  "tool": {
+    "item": <input,id=tool,count=1,unit=item,type=solid>
+  }
+}

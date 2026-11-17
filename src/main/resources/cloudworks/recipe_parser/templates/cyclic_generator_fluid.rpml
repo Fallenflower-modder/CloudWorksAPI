@@ -1,0 +1,11 @@
+{
+  "type": "cyclic:generator_fluid",
+  "fuel": {
+    "fluid": <input,id=fuel,count=1,unit=fluid,type=fluid>
+    "amount": <amount,input_id=fuel>
+  },
+  "energy": {
+    "ticks": 1000,
+    "rfpertick": 130
+  }
+}

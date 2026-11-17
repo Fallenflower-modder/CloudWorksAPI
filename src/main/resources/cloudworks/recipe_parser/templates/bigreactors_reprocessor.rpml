@@ -1,0 +1,18 @@
+{
+  "type": "bigreactors:reprocessor",
+  "fluid": {
+    "amount": <amount,id=flAmt,input_id=fl>
+    "id": <input,id=fl,count=1,unit=fluid,type=fluid>
+  },
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  },
+  "waste": {
+    "count": <count,id=wCount,input_id=waste>
+    "ingredient": {
+      "item": <input,id=waste,count=1,unit=item,type=solid>
+      "tag": <input,id=waste,count=1,unit=item,type=tag>
+    }
+  }
+}

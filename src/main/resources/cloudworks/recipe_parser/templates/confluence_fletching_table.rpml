@@ -1,0 +1,23 @@
+{
+  "type": "confluence:fletching_table",
+  "body": {
+    "item": <input,id=body,count=1,unit=item,type=solid>
+    "tag": <input,id=body,count=1,unit=item,type=tag>
+    "ingredient": {
+      "item": <input,id=body,count=1,unit=item,type=solid>
+      "tag": <input,id=body,count=1,unit=item,type=tag>
+    }
+  },
+  "head": {
+    "item": <input,id=head,count=1,unit=item,type=solid>
+    "tag": <input,id=head,count=1,unit=item,type=tag>
+  },
+  "tail": {
+    "item": <input,id=tail,count=1,unit=item,type=solid>
+    "tag": <input,id=tail,count=1,unit=item,type=tag>
+  },
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "modern_industrialization:chemical_reactor",
+  "fluid_inputs": [
+    <object,id=fluidInStruct>
+      "amount": <amount,id=amountFluidIn,input_id=fluidIn>
+      "fluid": <input,id=fluidIn,count=1,unit=fluid,type=fluid>
+      <duplicate,id=dupFluidIn,structure=fluidInStruct>
+    </object>
+  ],
+  "fluid_outputs": [
+    <object,id=fluidOutStruct>
+      "amount": <amount,id=amountFluidOut,output_id=fluidOut>
+      "fluid": <output,id=fluidOut,count=1,unit=fluid,type=fluid>
+      <duplicate,id=dupFluidOut,structure=fluidOutStruct>
+    </object>
+  ]
+}

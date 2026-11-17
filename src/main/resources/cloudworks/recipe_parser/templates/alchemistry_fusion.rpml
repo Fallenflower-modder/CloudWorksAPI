@@ -1,0 +1,16 @@
+{
+  "type": "alchemistry:fusion",
+  "input1": {
+    "item": <input,id=in1,count=1,unit=item,type=solid>
+    "tag": <input,id=in1,count=1,unit=item,type=tag>
+  },
+  "input2": {
+    "item": <input,id=in2,count=1,unit=item,type=solid>
+    "tag": <input,id=in2,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "count": <count,output_id=res>
+    "item": <output,id=res,count=1,unit=item,type=solid>
+    "tag": <output,id=res,count=1,unit=item,type=tag>
+  }
+}

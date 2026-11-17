@@ -1,0 +1,15 @@
+{
+  "type": "botania:terra_plate",
+  "mana": 500000,
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+    </object>
+    <duplicate,id=dupIng,structure=ingStruct>
+  ],
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

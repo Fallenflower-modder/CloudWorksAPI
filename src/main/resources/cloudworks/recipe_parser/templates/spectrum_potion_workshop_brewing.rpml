@@ -1,0 +1,6 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "ingredient1": <input,id=ing1,count=1,unit=item,type=solid>,
+  "ingredient2": <input,id=ing2,count=1,unit=item,type=solid>,
+  "effect": "minecraft:strength"
+}

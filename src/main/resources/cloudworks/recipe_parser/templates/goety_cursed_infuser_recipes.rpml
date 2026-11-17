@@ -1,0 +1,8 @@
+{
+  "type": "goety:cursed_infuser_recipes",
+  "ingredient": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "result": <output,id=res,count=1,unit=item,type=solid>
+}

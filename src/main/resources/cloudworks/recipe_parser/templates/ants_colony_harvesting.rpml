@@ -1,0 +1,9 @@
+{
+  "type": "ants:colony_harvesting",
+  "hive_ingredient": <input,id=hiveIng,count=1,unit=item,type=solid>
+  "hand_ingredient": <input,id=handIng,count=1,unit=item,type=solid>
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

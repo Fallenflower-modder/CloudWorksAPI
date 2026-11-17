@@ -1,0 +1,19 @@
+{
+  "type": "vampirism:shaped_crafting_weapontable",
+  "category": "equipment",
+  "key": {
+    <object,id=keyStruct>
+      <symbol,id=sym,input_id=keyIng>
+      "item": <input,id=keyIng,count=1,unit=item,type=solid>
+      "tag": <input,id=keyIng,count=1,unit=item,type=tag>
+    </object>
+  },
+  "lava": 1,
+  "pattern": [
+    <patternline,id=patLine>
+  ],
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

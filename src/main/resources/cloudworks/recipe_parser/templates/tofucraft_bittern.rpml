@@ -1,0 +1,14 @@
+{
+  "type": "tofucraft:bittern",
+  "extra_fluid": {
+    "amount": <amount,input_id=extraFluid>
+    "id": <input,id=extraFluid,count=1,unit=fluid,type=fluid>
+  },
+  "process": {
+    "amount": <amount,input_id=processFluid>
+    "id": <input,id=processFluid,count=1,unit=fluid,type=fluid>
+  },
+  "result": {
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "alchemistry:combiner",
+  "input": [
+    <object,id=inStruct>
+      "count": <count,input_id=ing>
+      "ingredient": {
+        "item": <input,id=ing,count=1,unit=item,type=solid>
+        "tag": <input,id=ing,count=1,unit=item,type=tag>
+      }
+    </object>
+    <duplicate,id=dupIn,structure=inStruct>
+  ],
+  "result": {
+    "count": <count,output_id=res>
+    "item": <output,id=res,count=1,unit=item,type=solid>
+    "tag": <output,id=res,count=1,unit=item,type=tag>
+  }
+}

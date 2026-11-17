@@ -1,0 +1,11 @@
+{
+  "type": "ars_nouveau:reactive_enchantment",
+  "pedestalItems": [
+    <object,id=pedestalItem>
+      "item": <input,id=pedestalItem,count=1,unit=item,type=solid>
+      "tag": <input,id=pedestalItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupPedestalItem,structure=pedestalItem>
+    </object>
+  ]
+  "sourceCost": 3000
+}

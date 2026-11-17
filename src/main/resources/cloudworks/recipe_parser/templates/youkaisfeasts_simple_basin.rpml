@@ -1,0 +1,11 @@
+{
+  "type": "youkaisfeasts:simple_basin",
+  "input": {
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>
+    "tag": <input,id=ingTag,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "amount": <amount,output_id=res>
+    "id": <output,id=res,count=1,unit=fluid,type=fluid>
+  }
+}

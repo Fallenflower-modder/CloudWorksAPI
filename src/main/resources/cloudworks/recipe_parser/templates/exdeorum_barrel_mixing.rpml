@@ -1,0 +1,15 @@
+{
+  "type": "exdeorum:barrel_mixing",
+  "fluid": {
+    "amount": <amount,input_id=fl>
+    "fluid": <input,id=fl,count=1,unit=fluid,type=fluid>
+  },
+  "ingredient": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

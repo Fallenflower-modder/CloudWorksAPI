@@ -1,0 +1,11 @@
+{
+  "type": "caupona:bowl",
+  "fluid": {
+    "fluid": <input,id=flItem,count=1,unit=fluid,type=fluid>
+  },
+  "inType": {
+    "item": <input,id=inItem,count=1,unit=item,type=solid>
+    "tag": <input,id=inItem,count=1,unit=item,type=tag>
+  },
+  "item": <output,id=result,count=1,unit=item,type=solid>
+}

@@ -1,0 +1,13 @@
+{
+  "type": "modern_industrialization:pressurizer",
+  "item_inputs": {
+    "amount": <count,id=countItemIn,input_id=itemIn>
+    "probability": <chance,id=chanceItemIn,input_id=itemIn>
+    "item": <input,id=itemIn,count=1,unit=item,type=solid>
+    "tag": <input,id=itemIn,count=1,unit=item,type=tag>
+  },
+  "fluid_outputs": {
+    "amount": <amount,id=amountFluidOut,output_id=fluidOut>
+    "fluid": <output,id=fluidOut,count=1,unit=fluid,type=fluid>
+  }
+}

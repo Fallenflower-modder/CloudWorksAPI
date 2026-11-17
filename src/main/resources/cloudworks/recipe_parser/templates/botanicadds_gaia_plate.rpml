@@ -1,0 +1,15 @@
+{
+  "type": "botanicadds:gaia_plate",
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+  "ingredients": [
+    <object,id=ingStruct>
+      "count": <count,input_id=ingItem>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ]
+}

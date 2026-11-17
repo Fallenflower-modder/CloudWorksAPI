@@ -1,0 +1,17 @@
+{
+  "type": "mekanism:sawing",
+  "input": {
+    "count": <count,input_id=ingItem>,
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>,
+    "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+  },
+  "main_output": {
+    "count": <count,output_id=mainOut>,
+    "id": <output,id=mainOut,count=1,unit=item,type=solid>
+  },
+  "secondary_chance": 1.0,
+  "secondary_output": {
+    "count": <count,output_id=secOut>,
+    "id": <output,id=secOut,count=1,unit=item,type=solid>
+  }
+}

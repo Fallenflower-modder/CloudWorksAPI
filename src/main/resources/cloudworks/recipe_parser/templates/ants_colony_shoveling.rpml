@@ -1,0 +1,8 @@
+{
+  "type": "ants:colony_shoveling",
+  "hive_ingredient": <input,id=ing,count=1,unit=item,type=solid>
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

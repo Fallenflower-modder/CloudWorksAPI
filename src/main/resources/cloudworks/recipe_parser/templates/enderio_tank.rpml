@@ -1,0 +1,16 @@
+{
+  "type": "enderio:tank",
+  "fluid": {
+    "amount": <amount,input_id=tankFluid>
+    "fluid": <input,id=tankFluid,count=1,unit=fluid,type=fluid>
+  }
+  "input": {
+    "item": <input,id=tankIng,count=1,unit=item,type=solid>
+    "tag": <input,id=tankIng,count=1,unit=item,type=tag>
+  },
+  "mode": "fill",
+  "output": {
+    "count": <count,output_id=tankOut>
+    "id": <output,id=tankOut,count=1,unit=item,type=solid>
+  }
+}

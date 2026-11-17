@@ -1,0 +1,17 @@
+{
+  "type": "extendedae:crystal_assembler",
+  "input_items": [
+    <object,id=inStruct>
+      "amount": <count,id=inAmt,input_id=ing>
+      "ingredient": {
+        "item": <input,id=ing,count=1,unit=item,type=solid>
+        "tag": <input,id=ing,count=1,unit=item,type=tag>
+      }
+    <duplicate,id=dupIn,structure=inStruct>
+    </object>
+  ],
+  "output": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

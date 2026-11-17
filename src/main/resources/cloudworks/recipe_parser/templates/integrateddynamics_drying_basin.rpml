@@ -1,0 +1,11 @@
+{
+  "type": "integrateddynamics:drying_basin",
+  "input_fluid": {
+    "id": <input,id=inputFluid,count=1,unit=fluid,type=fluid>
+    "amount": <amount,input_id=inputFluid>
+  },
+  "duration": 300,
+  "output_item": {
+    "id": <output,id=outputItem,count=1,unit=item,type=solid>
+  }
+}

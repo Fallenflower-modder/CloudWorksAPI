@@ -1,0 +1,19 @@
+{
+  "type": "naturesaura:tree_ritual",
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+    </object>
+    <duplicate,id=dupIng,structure=ingStruct>
+  ],
+  "sapling": {
+    "item": <input,id=sapling,count=1,unit=item,type=solid>
+    "tag": <input,id=sapling,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "id": <output,id=res,count=1,unit=item,type=solid>
+    "count": <count,output_id=res>
+  },
+  "time": 200
+}

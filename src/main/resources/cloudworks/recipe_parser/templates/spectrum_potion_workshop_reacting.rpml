@@ -1,0 +1,4 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": <input,id=item,count=1,unit=item,type=solid>
+}

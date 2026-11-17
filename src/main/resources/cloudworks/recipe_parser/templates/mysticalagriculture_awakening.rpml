@@ -1,0 +1,25 @@
+{
+  "type": "mysticalagriculture:awakening",
+  "essences": [
+    <object,id=esStruct>
+      "id": <input,id=esItem,count=1,unit=item,type=solid>
+      "count": <count,input_id=esItem>
+    <duplicate,id=dupEs,structure=esStruct>
+    </object>
+  ],
+  "input": {
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>
+    "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+  },
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingredientItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingredientTag,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

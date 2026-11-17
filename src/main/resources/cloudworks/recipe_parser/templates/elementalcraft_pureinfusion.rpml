@@ -1,0 +1,28 @@
+{
+  "type": "elementalcraft:pureinfusion",
+  "ingredients": {
+    "air": <object,id=air>
+      "item": <input,id=airItem,count=1,unit=item,type=solid>
+      "items": <input,id=airItem,count=1,unit=item,type=solid>
+    </object>,
+    "earth": <object,id=earth>
+      "item": <input,id=earthItem,count=1,unit=item,type=solid>
+      "items": <input,id=earthItem,count=1,unit=item,type=solid>
+    </object>,
+    "fire": <object,id=fire>
+      "item": <input,id=fireItem,count=1,unit=item,type=solid>
+      "items": <input,id=fireItem,count=1,unit=item,type=solid>
+    </object>,
+    "water": <object,id=water>
+      "item": <input,id=waterItem,count=1,unit=item,type=solid>
+      "items": <input,id=waterItem,count=1,unit=item,type=solid>
+    </object>,
+    "pure_infuser": {
+      "item": <input,id=core,count=1,unit=item,type=solid>
+    }
+  },
+  "output": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

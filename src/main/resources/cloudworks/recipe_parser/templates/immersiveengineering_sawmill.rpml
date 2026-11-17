@@ -1,0 +1,27 @@
+{
+  "type": "immersiveengineering:sawmill",
+  "input": {
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  },
+  "result": <object,id=resStruct>
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  </object>,
+  "secondaryOutputs": [
+    <object,id=secStruct>
+      "tag": <output,id=sec,count=1,unit=item,type=tag>
+      "id": <output,id=sec,count=1,unit=item,type=solid>
+    <duplicate,id=dupSec,structure=secStruct>
+    </object>
+  ],
+  "stripped": {
+    "id": <output,id=stripped,count=1,unit=item,type=solid>
+  },
+  "strippingSecondaries": [
+    <object,id=stripSecStruct>
+      "tag": <output,id=stripSec,count=1,unit=item,type=tag>
+    <duplicate,id=dupStripSec,structure=stripSecStruct>
+    </object>
+  ]
+}

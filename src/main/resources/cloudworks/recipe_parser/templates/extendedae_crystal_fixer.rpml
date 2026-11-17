@@ -1,0 +1,18 @@
+{
+  "type": "extendedae:crystal_fixer",
+  "chance": 8000,
+  "fuel": {
+    "ingredient": {
+      "item": <input,id=fuelIng,count=1,unit=item,type=solid>
+      "tag": <input,id=fuelIng,count=1,unit=item,type=tag>
+    }
+  },
+  "input": <object,id=inObj>
+    "count": <count,id=inCount,input_id=inItem>
+    "id": <input,id=inItem,count=1,unit=item,type=solid>
+  </object>
+  "output": <object,id=outObj>
+    "count": <count,id=outCount,output_id=out>
+    "id": <output,id=out,count=1,unit=item,type=solid>
+  </object>
+}

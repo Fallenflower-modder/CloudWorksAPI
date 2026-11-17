@@ -1,0 +1,25 @@
+{
+  "type": "cognition:molecular_metamorphosis",
+  "ingredient1": {
+    "item": <input,id=ing1,count=1,unit=item,type=solid>
+    "tag": <input,id=ing1,count=1,unit=item,type=tag>
+  },
+  "count1": <count,input_id=ing1>,
+  "ingredient2": {
+    "item": <input,id=ing2,count=1,unit=item,type=solid>
+    "tag": <input,id=ing2,count=1,unit=item,type=tag>
+  },
+  "count2": <count,input_id=ing2>,
+  "ingredient3": {
+    "item": <input,id=ing3,count=1,unit=item,type=solid>
+    "tag": <input,id=ing3,count=1,unit=item,type=tag>
+  },
+  "count3": <count,input_id=ing3>,
+  "result": {
+    "id": <output,id=res,count=1,unit=item,type=solid>
+    "count": <count,output_id=res>
+  },
+  "cost": 55,
+  "processTime": 40,
+  "id": "cognition:sand_metamorphosis"
+}

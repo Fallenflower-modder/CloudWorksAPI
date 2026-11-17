@@ -1,0 +1,7 @@
+{
+  "type": "caupona:boiling",
+  "from": {
+    "fluid": <input,id=fl,count=1,unit=fluid,type=fluid>
+  },
+  "to": <output,id=result,count=1,unit=fluid,type=fluid>
+}

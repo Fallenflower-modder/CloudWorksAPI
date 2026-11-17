@@ -1,0 +1,14 @@
+{
+  "type": "feywild:altar",
+  "output": <object,id=output>
+    "count": <count,output_id=output>
+    "id": <output,id=output,count=1,unit=item,type=solid>
+  </object>
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ]
+}

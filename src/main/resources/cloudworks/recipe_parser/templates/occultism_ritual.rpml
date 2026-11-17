@@ -1,0 +1,22 @@
+{
+  "type": "occultism:ritual",
+  "activation_item": {
+    "item": <input,id=activation,count=1,unit=item,type=solid>
+    "tag": <input,id=activation,count=1,unit=item,type=tag>
+  },
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>,
+  "ritual_dummy": {
+    "count": 1,
+    "id": "occultism:ritual_dummy/craft"
+  }
+}

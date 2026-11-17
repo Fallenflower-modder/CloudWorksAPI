@@ -1,0 +1,27 @@
+{
+  "type": "bloodmagic:soulforge",
+  "input0": <object,id=in0>
+    "count": <count,input_id=in0>
+    "id": <input,id=in0,count=1,unit=item,type=solid>
+    "item": <input,id=in0,count=1,unit=item,type=solid>
+  </object>,
+  "input1": <object,id=in1>
+    "count": <count,input_id=in1>
+    "id": <input,id=in1,count=1,unit=item,type=solid>
+    "item": <input,id=in1,count=1,unit=item,type=solid>
+  </object>,
+  "input2": <object,id=in2>
+    "count": <count,input_id=in2>
+    "id": <input,id=in2,count=1,unit=item,type=solid>
+    "item": <input,id=in2,count=1,unit=item,type=solid>
+  </object>,
+  "input3": <object,id=in3>
+    "count": <count,input_id=in3>
+    "id": <input,id=in3,count=1,unit=item,type=solid>
+    "item": <input,id=in3,count=1,unit=item,type=solid>
+  </object>,
+  "output": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

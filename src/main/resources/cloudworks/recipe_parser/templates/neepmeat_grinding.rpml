@@ -1,0 +1,11 @@
+{
+  "type": "neepmeat:grinding",
+  "input": {
+    "resource": <input,id=ing,count=1,unit=item,type=solid>
+    "amount": <count,input_id=ing>
+  },
+  "output": {
+    "resource": <output,id=res,count=1,unit=item,type=solid>
+    "amount": <amount,output_id=res>
+  }
+}

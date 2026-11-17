@@ -1,0 +1,20 @@
+{
+  "type": "eidolon_repraised:worktable",
+  "pattern": [
+    <patternline,id=patLine>
+  ],
+  "reagents": [
+    <patternline,id=reagLine>
+  ],
+  "key": {
+    <object,id=keyStruct>
+      <symbol,id=sym,input_id=keyIng>
+      "item": <input,id=keyIng,count=1,unit=item,type=solid>
+      "tag": <input,id=keyIng,count=1,unit=item,type=tag>
+    </object>
+  },
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

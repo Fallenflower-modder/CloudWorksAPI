@@ -1,0 +1,14 @@
+{
+  "type": "cognition:emptying",
+  "ingredient": {
+    "item": <input,id=ingredient,count=1,unit=item,type=solid>
+    "tag": <input,id=ingredient,count=1,unit=item,type=tag>
+  },
+  "result": {
+    "id": <output,id=res,count=1,unit=item,type=solid>
+    "count": <count,output_id=res>
+  },
+  "hasResultStack": true,
+  "gain_mB": 106900,
+  "id": "cognition:golden_apple_emptying"
+}

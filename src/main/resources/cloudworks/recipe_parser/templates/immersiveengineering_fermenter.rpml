@@ -1,0 +1,12 @@
+{
+  "type": "immersiveengineering:fermenter",
+  "input": {
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  },
+  "fluid": {
+    "amount": <amount,output_id=fl>
+    "id": <output,id=fl,count=1,unit=fluid,type=fluid>
+    "tag": <output,id=fl,count=1,unit=fluid,type=fluid>
+  }
+}

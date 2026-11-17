@@ -1,0 +1,24 @@
+{
+  "type": "malum:soul_binding",
+  "input": {
+    "count": <count,input_id=ing>
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "extraInputs": [
+    <object,id=extraStruct>
+      "count": <count,input_id=extra>
+      "item": <input,id=extra,count=1,unit=item,type=solid>
+      "tag": <input,id=extra,count=1,unit=item,type=tag>
+    <duplicate,id=dupExtra,structure=extraStruct>
+    </object>
+  ],
+  "result": <output,id=res,count=1,unit=item,type=solid>,
+  "spirits": [
+    <object,id=spiritStruct>
+      "type": "malum:aqueous"
+      "count": 32
+    <duplicate,id=dupSpirit,structure=spiritStruct>
+    </object>
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "confluence:item_transmutation",
+  "source": {
+    "item": <input,id=source,count=1,unit=item,type=solid>
+    "tag": <input,id=source,count=1,unit=item,type=tag>
+  },
+  "target": [
+    <object,id=targetStruct>
+      "count": <count,output_id=target>
+      "id": <output,id=target,count=1,unit=item,type=solid>
+    </object>
+    <duplicate,id=dupTargetStruct,structure=targetStruct>
+  ]
+}

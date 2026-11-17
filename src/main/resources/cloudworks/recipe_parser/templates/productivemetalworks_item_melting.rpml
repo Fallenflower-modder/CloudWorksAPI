@@ -1,0 +1,16 @@
+{
+  "type": "productivemetalworks:item_melting",
+  "ingredient": {
+    "item": <input,id=ingredient,count=1,unit=item,type=solid>
+    "tag": <input,id=ingredient,count=1,unit=item,type=tag>
+  },
+  "maximum_temperature": 0,
+  "minimum_temperature": 1000,
+  "result": [
+    <object,id=outStruct>
+      "amount": <amount,output_id=out>
+      "id": <output,id=out,count=1,unit=fluid,type=fluid>
+    </object>
+    <duplicate,id=dupOut,structure=outStruct>
+  ]
+}

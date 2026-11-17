@@ -1,0 +1,32 @@
+{
+  "type": "modern_industrialization:heat_exchanger",
+  "item_inputs": [
+    <object,id=itemInStruct>
+      "amount": <count,id=countItemIn,input_id=itemIn>
+      "item": <input,id=itemIn,count=1,unit=item,type=solid>
+      "tag": <input,id=itemIn,count=1,unit=item,type=tag>
+      <duplicate,id=dupItemIn,structure=itemInStruct>
+    </object>
+  ],
+  "fluid_inputs": [
+    <object,id=fluidInStruct>
+      "amount": <amount,id=amountFluidIn,input_id=fluidIn>
+      "fluid": <input,id=fluidIn,count=1,unit=fluid,type=fluid>
+      <duplicate,id=dupFluidIn,structure=fluidInStruct>
+    </object>
+  ],
+  "item_outputs": [
+    <object,id=itemOutStruct>
+      "amount": <count,id=countItemOut,output_id=itemOut>
+      "item": <output,id=itemOut,count=1,unit=item,type=solid>
+      <duplicate,id=dupItemOut,structure=itemOutStruct>
+    </object>
+  ],
+  "fluid_outputs": [
+    <object,id=fluidOutStruct>
+      "amount": <amount,id=amountFluidOut,output_id=fluidOut>
+      "fluid": <output,id=fluidOut,count=1,unit=fluid,type=fluid>
+      <duplicate,id=dupFluidOut,structure=fluidOutStruct>
+    </object>
+  ]
+}

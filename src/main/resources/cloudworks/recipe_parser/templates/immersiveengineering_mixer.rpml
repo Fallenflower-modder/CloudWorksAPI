@@ -1,0 +1,24 @@
+{
+  "type": "immersiveengineering:mixer",
+  "energy": 3200,
+  "fluid": {
+    "amount": <amount,input_id=fluidIn>
+    "tag": <input,id=fluidIn,count=1,unit=fluid,type=fluid>
+  },
+  "inputs": [
+    <object,id=inputStruct>
+      "basePredicate": {
+        "item": <input,id=inputItem,count=1,unit=item,type=solid>
+        "tag": <input,id=inputItem,count=1,unit=item,type=tag>
+      },
+      "count": <count,input_id=inputItem>
+      "item": <input,id=inputItem,count=1,unit=item,type=solid>
+      "tag": <input,id=inputItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupInputStruct,structure=inputStruct>
+    </object>
+  ],
+  "result": {
+    "amount": <amount,output_id=fluidOut>
+    "id": <output,id=fluidOut,count=1,unit=fluid,type=fluid>
+  }
+}

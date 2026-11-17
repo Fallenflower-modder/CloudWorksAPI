@@ -1,0 +1,11 @@
+{
+  "type": "vinery:apple_mashing",
+  "input": <object,id=inputObj>
+    "item": <input,id=input,count=1,unit=item,type=solid>
+  <count,id=inputCount,input_id=input>
+  </object>
+  "output": <object,id=output>
+    "count": <count,output_id=output>
+    "id": <output,id=output,count=1,unit=item,type=solid>
+  </object>
+}

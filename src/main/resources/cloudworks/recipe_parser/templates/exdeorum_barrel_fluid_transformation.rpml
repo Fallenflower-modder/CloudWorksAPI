@@ -1,0 +1,17 @@
+{
+  "type": "exdeorum:barrel_fluid_transformation",
+  "base_fluid": {
+    "fluid": <input,id=baseFluid,count=1,unit=fluid,type=fluid>
+  },
+  "catalyst": {
+    "block": <input,id=cat,count=1,unit=item,type=solid>
+  },
+  "byproducts": [
+    <object,id=byStruct>
+      "value": <output,id=by,count=1,unit=item,type=solid>
+      "weight": 50
+    </object>
+    <duplicate,id=dupBy,structure=byStruct>
+  ],
+  "result_fluid": <output,id=resFluid,count=1,unit=fluid,type=fluid>
+}

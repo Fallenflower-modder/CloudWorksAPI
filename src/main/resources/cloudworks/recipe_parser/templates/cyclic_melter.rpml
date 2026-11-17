@@ -1,0 +1,14 @@
+{
+  "type": "cyclic:melter",
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "result": <object,id=result>
+    "id": <output,id=result,count=1,unit=fluid,type=fluid>
+    "amount": <amount,output_id=result>
+  </object>
+}

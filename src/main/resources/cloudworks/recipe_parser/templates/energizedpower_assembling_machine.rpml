@@ -1,0 +1,16 @@
+{
+  "type": "energizedpower:assembling_machine",
+  "inputs": [
+    <object,id=ingStruct>
+      "input": {
+        "item": <input,id=ing,count=1,unit=item,type=solid>
+        "tag": <input,id=ing,count=1,unit=item,type=tag>
+      }
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "output": {
+    "count": <count,output_id=res>
+    "item": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

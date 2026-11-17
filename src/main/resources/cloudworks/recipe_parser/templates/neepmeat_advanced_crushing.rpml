@@ -1,0 +1,16 @@
+{
+  "type": "neepmeat:advanced_crushing",
+  "input": {
+    "resource": <input,id=ing,count=1,unit=item,type=solid>
+    "amount": <count,input_id=ing>
+  },
+  "output": {
+    "resource": <output,id=res,count=1,unit=item,type=solid>
+    "amount": <amount,output_id=res>
+  },
+  "extra": {
+    "resource": <output,id=res2,count=1,unit=item,type=solid>
+    "amount": <amount,output_id=res2>
+    "chance": <chance,output_id=res2>
+  }
+}

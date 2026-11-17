@@ -1,0 +1,15 @@
+{
+  "type": "vampirism:alchemical_cauldron",
+  "fluid": {
+    "item": <input,id=fluid,count=1,unit=item,type=solid>
+    "tag": <input,id=fluid,count=1,unit=item,type=tag>
+  },
+  "ingredient": {
+    "item": <input,id=ingredient,count=1,unit=item,type=solid>
+    "tag": <input,id=ingredient,count=1,unit=item,type=tag>
+  },
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

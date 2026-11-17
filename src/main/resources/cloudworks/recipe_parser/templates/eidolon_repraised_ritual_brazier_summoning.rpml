@@ -1,0 +1,22 @@
+{
+  "type": "eidolon_repraised:ritual_brazier_summoning",
+  "focus_items": [
+    <object,id=focusStruct>
+      "item": <input,id=focusItem,count=1,unit=item,type=solid>
+      "tag": <input,id=focusItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupFocus,structure=focusStruct>
+    </object>
+  ],
+  "output": <output,id=summon,count=1,unit=item,type=solid>,
+  "pedestal_items": [
+    <object,id=pedStruct>
+      "item": <input,id=pedItem,count=1,unit=item,type=solid>
+      "tag": <input,id=pedItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupPed,structure=pedStruct>
+    </object>
+  ],
+  "reagent": {
+    "item": <input,id=reagItem,count=1,unit=item,type=solid>
+    "tag": <input,id=reagItem,count=1,unit=item,type=tag>
+  }
+}

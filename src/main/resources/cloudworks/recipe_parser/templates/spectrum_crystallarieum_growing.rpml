@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "fluid": {
+    "fluid": <input,id=fl,count=1,unit=fluid,type=fluid>
+  },
+  "ingredient": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "additives": [
+    <object,id=addStruct>
+      "ingredient": {
+        "item": <input,id=add,count=1,unit=item,type=solid>
+        "tag": <input,id=add,count=1,unit=item,type=tag>
+      }
+      "consume_chance_per_second": 0.1
+      "growth_acceleration_mod": 1.0
+      "ink_consumption_mod": 1.0
+    <duplicate,id=dupAdd,structure=addStruct>
+    </object>
+  ],
+  "additional_recipe_viewer_results": [
+    <object,id=resStruct>
+      "count": <count,output_id=res>
+      "id": <output,id=res,count=1,unit=item,type=solid>
+    <duplicate,id=dupRes,structure=resStruct>
+    </object>
+  ]
+}

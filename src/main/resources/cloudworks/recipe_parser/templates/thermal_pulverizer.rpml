@@ -1,0 +1,14 @@
+{
+  "type": "thermal:pulverizer",
+  "ingredient": {
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>
+    "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+  },
+  "result": [
+    <object,id=resStruct>
+      "item": <output,id=res,count=1,unit=item,type=solid>
+      "chance": <chance,id=resChance,output_id=res>
+    <duplicate,id=dupRes,structure=resStruct>
+    </object>
+  ]
+}

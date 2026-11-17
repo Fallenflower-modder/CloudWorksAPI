@@ -1,0 +1,17 @@
+{
+  "type": "malum:runeworking",
+  "input": {
+    "count": <count,input_id=ing>
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "secondaryInput": {
+    "count": <count,input_id=sec>
+    "item": <input,id=sec,count=1,unit=item,type=solid>
+    "tag": <input,id=sec,count=1,unit=item,type=tag>
+  },
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

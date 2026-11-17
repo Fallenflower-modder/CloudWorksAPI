@@ -1,0 +1,9 @@
+{
+  "type": "evilcraft:environmental_accumulator",
+  "input_item": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+  },
+  "output_item": {
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "meadow:cooking",
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingIngredient,count=1,unit=item,type=solid>
+      "tag": <input,id=ingIngredient,count=1,unit=item,type=tag>
+    </object>
+    <duplicate,id=dupIng,structure=ingStruct>
+  ],
+  "fluid_amount": 2,
+  "crafting_duration": 30,
+  "result": {
+    "id": <output,id=res,count=1,unit=item,type=solid>
+    "count": <count,output_id=res>
+  }
+}

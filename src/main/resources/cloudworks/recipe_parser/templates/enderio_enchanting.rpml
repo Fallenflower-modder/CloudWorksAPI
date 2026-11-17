@@ -1,0 +1,10 @@
+{
+  "type": "enderio:enchanting",
+  "cost_multiplier": 1,
+  "enchantment": "minecraft:aqua_affinity",
+  "input": {
+    "count": <count,input_id=ing>
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  }
+}

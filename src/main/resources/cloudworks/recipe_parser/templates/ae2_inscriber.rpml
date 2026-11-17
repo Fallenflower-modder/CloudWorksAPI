@@ -1,0 +1,22 @@
+{
+  "type": "ae2:inscriber",
+  "ingredients": {
+    "bottom": {
+      "item": <input,id=ingBot,count=1,unit=item,type=solid>
+      "tag": <input,id=ingBot,count=1,unit=item,type=tag>
+    },
+    "middle": {
+      "item": <input,id=ingMid,count=1,unit=item,type=solid>
+      "tag": <input,id=ingMid,count=1,unit=item,type=tag>
+    },
+    "top": {
+      "item": <input,id=ingTop,count=1,unit=item,type=solid>
+      "tag": <input,id=ingTop,count=1,unit=item,type=tag>
+    }
+  },
+  "mode": "inscribe",
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

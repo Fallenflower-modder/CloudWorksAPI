@@ -1,0 +1,15 @@
+{
+  "type": "immersiveengineering:cloche",
+  "input": <object,id=inputObj>
+    "item": <input,id=input,count=1,unit=item,type=solid>
+  <count,id=inputCount,input_id=input>
+  </object>
+  "render": {"type": "immersiveengineering:crop", "block": "croptopia:artichoke_crop"},
+  "results": [
+    <object,id=resultsElem>
+      "id": <output,id=resultsElem,count=1,unit=item,type=solid>
+    <duplicate,id=dupResultsElem,structure=resultsElem>
+    </object>
+  ]
+  "soil": {"item": "minecraft:dirt"},
+}

@@ -1,0 +1,12 @@
+<script,set_global_fluid_transfer=true>
+{
+  "type": "actuallyadditions:pressing",
+  "fluid": {
+    "amount": <amount,output_id=fluid>
+    "id": <output,id=fluid,count=1,unit=fluid,type=fluid>
+  },
+  "ingredient": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  }
+}

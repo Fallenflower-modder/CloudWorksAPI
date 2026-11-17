@@ -1,0 +1,36 @@
+{
+  "type": "immersiveengineering:arc_furnace",
+  "additives": [
+    <object,id=addStruct>
+      "item": <input,id=add,count=1,unit=item,type=solid>
+      "tag": <input,id=add,count=1,unit=item,type=tag>
+    <duplicate,id=dupAdd,structure=addStruct>
+    </object>
+  ],
+  "input": {
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  },
+  "results": [
+    <object,id=resStruct>
+      "count": <count,output_id=res>
+      "tag": <output,id=res,count=1,unit=item,type=tag>
+      "id": <output,id=res,count=1,unit=item,type=solid>
+    <duplicate,id=dupRes,structure=resStruct>
+    </object>
+  ],
+  "secondaries": [
+    <object,id=secStruct>
+      "chance": <chance,output_id=sec>
+      "output": {
+        "tag": <output,id=sec,count=1,unit=item,type=tag>
+        "id": <output,id=sec,count=1,unit=item,type=solid>
+      }
+    <duplicate,id=dupSec,structure=secStruct>
+    </object>
+  ],
+  "slag": {
+    "tag": <output,id=slag,count=1,unit=item,type=tag>
+    "item": <output,id=slag,count=1,unit=item,type=solid>
+  }
+}

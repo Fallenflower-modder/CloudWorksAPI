@@ -1,0 +1,16 @@
+{
+  "type": "immersiveengineering:coke_oven",
+  "creosote": 500,
+  "input": {
+    "basePredicate": {
+      "item": <input,id=inputItem,count=1,unit=item,type=solid>
+      "tag": <input,id=inputItem,count=1,unit=item,type=tag>
+    },
+    "count": <count,input_id=inputItem>
+  },
+  "result": {
+    "id": <output,id=resultItem,count=1,unit=item,type=solid>
+    "tag": <output,id=resultItem,count=1,unit=item,type=tag>
+  },
+  "time": 6000
+}

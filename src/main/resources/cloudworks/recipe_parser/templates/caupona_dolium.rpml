@@ -1,0 +1,19 @@
+{
+  "type": "caupona:dolium",
+  "fluid": {
+    "amount": <amount,input_id=fl>
+    "fluid": <input,id=fl,count=1,unit=fluid,type=fluid>
+  },
+  "items": [
+    <object,id=itemStruct>
+      "count": <count,input_id=ing>
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+    <duplicate,id=dupItem,structure=itemStruct>
+    </object>
+  ],
+  "output": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

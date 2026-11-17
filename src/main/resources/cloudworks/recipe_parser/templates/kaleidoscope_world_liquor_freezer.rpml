@@ -1,0 +1,16 @@
+{
+  "type": "kaleidoscope_world_liquor:freezer",
+  "fluid": <input,id=fluidInput,count=1,unit=fluid,type=fluid>
+  "fluid_amount": <amount,input_id=fluidInput>
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

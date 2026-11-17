@@ -1,0 +1,22 @@
+{
+  "type": "forbidden_arcanus:clibano_combustion",
+  "ingredients": {
+    "first": <object,id=first>
+      "item": <input,id=firstItem,count=1,unit=item,type=solid>
+      "tag": <input,id=firstItem,count=1,unit=item,type=tag>
+    </object>,
+    "second": <object,id=second>
+      "item": <input,id=secondItem,count=1,unit=item,type=solid>
+      "tag": <input,id=secondItem,count=1,unit=item,type=tag>
+    </object>
+  },
+  "residue": {
+    "type": <output,id=residue,count=1,unit=item,type=solid>
+    "chance": <chance,output_id=residue>
+  },
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>,
+  "enhancer": <input,id=enhancer,count=1,unit=item,type=solid>
+}

@@ -1,0 +1,15 @@
+<script,set_global_fluid_transfer=true>
+{
+  "type": "bigreactors:fluidizersolid",
+  "ingredient": <object,id=ingObj>
+    "count": <count,id=ingCount,input_id=ing>
+    "ingredient": {
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+    }
+  </object>
+  "result": {
+    "amount": <amount,output_id=resFl>
+    "id": <output,id=resFl,count=1,unit=fluid,type=fluid>
+  }
+}

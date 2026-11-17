@@ -1,0 +1,26 @@
+{
+  "type": "immersiveengineering:shaped_fluid",
+  <script,set_global_fluid_transfer=true,set_global_default_transfer_rate=250>
+  "category": "misc",
+  "key": {
+    "b": <object,id=keyFluid>
+      "type": "immersiveengineering:fluid_stack"
+      "amount": <amount,input_id=keyFluid>
+      "tag": <input,id=keyFluid,count=1,unit=fluid,type=fluid>
+      "id": <input,id=keyFluid,count=1,unit=fluid,type=fluid>
+    </object>
+    "w": {
+      "tag": <input,id=keyItem,count=1,unit=item,type=tag>
+      "item": <input,id=keyItem,count=1,unit=item,type=solid>
+    }
+  },
+  "pattern": [
+    "www",
+    "wbw",
+    "www"
+  ],
+  "result": <object,id=resStruct>
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  </object>
+}

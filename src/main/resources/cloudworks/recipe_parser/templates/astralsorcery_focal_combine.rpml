@@ -1,0 +1,17 @@
+{
+  "type": "astralsorcery:focal_combine",
+  "inputs": [
+    <object,id=ingStruct>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "outputs": [
+    <object,id=outStruct>
+      "count": <count,output_id=res>
+      "id": <output,id=res,count=1,unit=item,type=solid>
+    <duplicate,id=dupOut,structure=outStruct>
+    </object>
+  ]
+}

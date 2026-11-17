@@ -1,0 +1,36 @@
+{
+  "type": "modern_industrialization:macerator",
+  "duration": 200,
+  "eu": 2,
+  "item_inputs": [
+    <object,id=itemInStruct>
+      "amount": <count,input_id=itemIn>,
+      "item": <input,id=itemIn,count=1,unit=item,type=solid>,
+      "tag": <input,id=itemIn,count=1,unit=item,type=tag>,
+      "probability": 0.0
+    </object>
+    <duplicate,id=dupItemIn,structure=itemInStruct>
+  ],
+  "item_outputs": [
+    <object,id=itemOutStruct>
+      "amount": <count,output_id=itemOut>,
+      "item": <output,id=itemOut,count=1,unit=item,type=solid>
+    </object>
+    <duplicate,id=dupItemOut,structure=itemOutStruct>
+  ],
+  "fluid_inputs": [
+    <object,id=fluidInStruct>
+      "amount": <amount,input_id=fluidIn>,
+      "fluid": <input,id=fluidIn,count=1,unit=fluid,type=fluid>,
+      "tag": <input,id=fluidIn,count=1,unit=fluid,type=tag>
+    </object>
+    <duplicate,id=dupFluidIn,structure=fluidInStruct>
+  ],
+  "fluid_outputs": [
+    <object,id=fluidOutStruct>
+      "amount": <amount,output_id=fluidOut>,
+      "fluid": <output,id=fluidOut,count=1,unit=fluid,type=fluid>
+    </object>
+    <duplicate,id=dupFluidOut,structure=fluidOutStruct>
+  ]
+}

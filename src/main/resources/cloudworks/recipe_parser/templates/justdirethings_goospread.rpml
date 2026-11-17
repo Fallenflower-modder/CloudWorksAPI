@@ -1,0 +1,9 @@
+{
+  "type": "justdirethings:goospread",
+  "input": {
+    "Name": <input,id=ing,count=1,unit=item,type=solid>
+  },
+  "output": {
+    "Name": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

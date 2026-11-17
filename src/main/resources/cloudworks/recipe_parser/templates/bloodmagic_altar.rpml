@@ -1,0 +1,12 @@
+{
+  "type": "bloodmagic:altar",
+  "input": <object,id=ing>
+    "count": <count,input_id=ing>
+    "id": <input,id=ing,count=1,unit=item,type=solid>
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+  </object>,
+  "output": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

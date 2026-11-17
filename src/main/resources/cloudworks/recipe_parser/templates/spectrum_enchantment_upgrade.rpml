@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:treasure_hunter",
+  "levels": [
+    <object,id=levelStruct>
+      "ingredient": {
+        "item": <input,id=levelIng,count=1,unit=item,type=solid>
+        "tag": <input,id=levelIng,count=1,unit=item,type=tag>
+      }
+      "ingredient_count_per_bowl": 2
+      "experience": 400
+    <duplicate,id=dupLevel,structure=levelStruct>
+    </object>
+  ]
+}

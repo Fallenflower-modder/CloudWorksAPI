@@ -1,0 +1,11 @@
+{
+  "type": "bountifulfares:milling",
+  "ingredient": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "result": {
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  },
+  "result_count": <count,output_id=res>
+}

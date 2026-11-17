@@ -1,0 +1,20 @@
+{
+  "type": "immersiveengineering:bottling_machine",
+  <script,set_global_fluid_transfer=true,set_global_default_transfer_rate=1000>
+  "fluid": {
+    "amount": <amount,input_id=fl>
+    "tag": <input,id=fl,count=1,unit=fluid,type=fluid>
+    "id": <input,id=fl,count=1,unit=fluid,type=fluid>
+  },
+  "input": {
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  },
+  "results": [
+    <object,id=resStruct>
+      "count": <count,output_id=res>
+      "id": <output,id=res,count=1,unit=item,type=solid>
+    <duplicate,id=dupRes,structure=resStruct>
+    </object>
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "type": "farm_and_charm:pot_cooking",
+  "container": <object,id=container>
+    "count": <count,output_id=container>
+    "id": <output,id=container,count=1,unit=item,type=solid>
+  "ingredients": [
+    <object,id=ingredientsStruct>
+      "item": <input,id=ingredientsItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingredientsItem,count=1,unit=item,type=tag>
+    <count,id=ingredientsCount,input_id=ingredientsItem>
+    <duplicate,id=dupIngredientsStruct,structure=ingredientsStruct>
+    </object>
+  ]
+  </object>
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

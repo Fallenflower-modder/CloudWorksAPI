@@ -1,0 +1,14 @@
+{
+  "type": "enderio:vat_fermenting",
+  "input": {
+    "amount": <amount,input_id=ing>
+    "tag": <input,id=ing,count=1,unit=fluid,type=fluid>
+  }
+  "left_reagent": "enderio:seeds",
+  "output": {
+    "amount": <amount,output_id=out>
+    "id": <output,id=out,count=1,unit=fluid,type=fluid>
+  }
+  "right_reagent": "enderio:crops",
+  "ticks": 200
+}

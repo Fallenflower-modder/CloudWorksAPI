@@ -1,0 +1,16 @@
+{
+  "type": "actuallyadditions:crushing",
+  "ingredient": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "result": [
+    <object,id=resStruct>
+      "result": {
+        "count": <count,output_id=res>
+        "id": <output,id=res,count=1,unit=item,type=solid>
+      }
+    <duplicate,id=dupRes,structure=resStruct>
+    </object>
+  ]
+}

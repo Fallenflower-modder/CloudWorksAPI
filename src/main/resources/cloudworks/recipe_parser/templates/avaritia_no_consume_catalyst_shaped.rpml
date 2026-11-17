@@ -1,0 +1,20 @@
+{
+  "type": "avaritia:no_consume_catalyst_shaped",
+  "key": <object,id=keyObj>
+    <key,id=key>
+      <object,id=keyIng>
+        "item": <input,id=keyIng,count=1,unit=item,type=solid>
+        "tag": <input,id=keyIng,count=1,unit=item,type=tag>
+      <symbol,id=sym,input_id=keyIng>
+    <count,id=keyIngCount,input_id=keyIng>
+    <patternline,id=line,input_id=sym>
+  "pattern": [
+    <patternline,id=line>
+      </object>
+  ]
+  </object>
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

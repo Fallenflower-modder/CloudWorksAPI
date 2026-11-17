@@ -1,0 +1,17 @@
+{
+  "type": "mekanism:pigment_mixing",
+  "left_input": {
+    "amount": <amount,input_id=leftIn>,
+    "chemical": <input,id=leftIn,count=1,unit=fluid,type=fluid>,
+    "tag": <input,id=leftIn,count=1,unit=fluid,type=tag>
+  },
+  "output": {
+    "amount": <amount,output_id=chemOut>,
+    "id": <output,id=chemOut,count=1,unit=fluid,type=fluid>
+  },
+  "right_input": {
+    "amount": <amount,input_id=rightIn>,
+    "chemical": <input,id=rightIn,count=1,unit=fluid,type=fluid>,
+    "tag": <input,id=rightIn,count=1,unit=fluid,type=tag>
+  }
+}

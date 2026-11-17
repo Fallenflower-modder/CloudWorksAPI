@@ -1,0 +1,21 @@
+{
+  "type": "immersiveengineering:blast_furnace",
+  "input": {
+    "item": <input,id=inputItem,count=1,unit=item,type=solid>
+    "tag": <input,id=inputItem,count=1,unit=item,type=tag>
+  },
+  "result": {
+    "item": <output,id=resultItem,count=1,unit=item,type=solid>
+    "tag": <output,id=resultItem,count=1,unit=item,type=tag>
+  },
+  "slag": {
+    "basePredicate": {
+      "item": <output,id=slagItem,count=1,unit=item,type=solid>
+      "tag": <output,id=slagItem,count=1,unit=item,type=tag>
+    },
+    "count": <count,output_id=slagItem>
+    "item": <output,id=slagItem,count=1,unit=item,type=solid>
+    "tag": <output,id=slagItem,count=1,unit=item,type=tag>
+  },
+  "time": 1200
+}

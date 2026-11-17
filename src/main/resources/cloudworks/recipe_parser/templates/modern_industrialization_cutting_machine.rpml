@@ -1,0 +1,16 @@
+{
+  "type": "modern_industrialization:cutting_machine",
+  "item_inputs": {
+    "amount": <count,id=countItemIn,input_id=itemIn>
+    "item": <input,id=itemIn,count=1,unit=item,type=solid>
+    "tag": <input,id=itemIn,count=1,unit=item,type=tag>
+  },
+  "fluid_inputs": {
+    "amount": <amount,id=amountFluidIn,input_id=fluidIn>
+    "fluid": <input,id=fluidIn,count=1,unit=fluid,type=fluid>
+  },
+  "item_outputs": {
+    "amount": <count,id=countItemOut,output_id=itemOut>
+    "item": <output,id=itemOut,count=1,unit=item,type=solid>
+  }
+}

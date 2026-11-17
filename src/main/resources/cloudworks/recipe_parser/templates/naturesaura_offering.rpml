@@ -1,0 +1,14 @@
+{
+  "type": "naturesaura:offering",
+  "input": {
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  },
+  "start_item": {
+    "item": <input,id=startItem,count=1,unit=item,type=solid>
+    "tag": <input,id=startItem,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

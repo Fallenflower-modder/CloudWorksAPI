@@ -1,0 +1,15 @@
+{
+  "type": "farm_and_charm:crafting_bowl",
+  "ingredients": [
+    <object,id=ingredientsStruct>
+      "item": <input,id=ingredientsItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingredientsItem,count=1,unit=item,type=tag>
+    <count,id=ingredientsCount,input_id=ingredientsItem>
+    <duplicate,id=dupIngredientsStruct,structure=ingredientsStruct>
+    </object>
+  ]
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

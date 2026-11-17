@@ -1,0 +1,13 @@
+{
+  "type": "eternal_starlight:drying",
+  "duration_ticks": 150,
+  "fire_below": true,
+  "input": {
+    "item": <input,id=inItem,count=1,unit=item,type=solid>
+    "tag": <input,id=inItem,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

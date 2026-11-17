@@ -1,0 +1,18 @@
+{
+  "type": "modern_industrialization:polarizer",
+  "item_inputs": [
+    <object,id=itemInStruct>
+      "amount": <count,id=countItemIn,input_id=itemIn>
+      "item": <input,id=itemIn,count=1,unit=item,type=solid>
+      "tag": <input,id=itemIn,count=1,unit=item,type=tag>
+      <duplicate,id=dupItemIn,structure=itemInStruct>
+    </object>
+  ],
+  "item_outputs": [
+    <object,id=itemOutStruct>
+      "amount": <count,id=countItemOut,output_id=itemOut>
+      "item": <output,id=itemOut,count=1,unit=item,type=solid>
+      <duplicate,id=dupItemOut,structure=itemOutStruct>
+    </object>
+  ]
+}

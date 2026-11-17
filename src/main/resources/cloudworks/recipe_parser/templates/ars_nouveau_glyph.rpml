@@ -1,0 +1,15 @@
+{
+  "type": "ars_nouveau:glyph",
+  "inputs": [
+    <object,id=inputStruct>
+      "item": <input,id=inputItem,count=1,unit=item,type=solid>
+      "tag": <input,id=inputItem,count=1,unit=item,type=tag>
+    <count,id=inputCount,input_id=inputItem>
+    <duplicate,id=dupInputStruct,structure=inputStruct>
+    </object>
+  ]
+  "output": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

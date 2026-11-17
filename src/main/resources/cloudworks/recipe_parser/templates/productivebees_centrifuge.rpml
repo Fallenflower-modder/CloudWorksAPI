@@ -1,0 +1,22 @@
+{
+  "type": "productivebees:centrifuge",
+  "ingredient": {
+    "items": <input,id=ing,count=1,unit=item,type=solid>
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "outputs": [
+    <object,id=outStruct>
+      "chance": <chance,output_id=out>
+      "item": {
+        "item": <output,id=out,count=1,unit=item,type=solid>
+        "tag": <output,id=out,count=1,unit=item,type=tag>
+      }
+    </object>
+    <duplicate,id=dupOut,structure=outStruct>
+  ],
+  "fluid": {
+    "amount": <amount,output_id=outFluid>
+    "fluid": <output,id=outFluid,count=1,unit=fluid,type=fluid>
+  }
+}

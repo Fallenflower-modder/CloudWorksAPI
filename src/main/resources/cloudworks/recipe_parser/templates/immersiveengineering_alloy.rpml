@@ -1,0 +1,20 @@
+{
+  "type": "immersiveengineering:alloy",
+  "input0": {
+    "item": <input,id=in0,count=1,unit=item,type=solid>
+    "tag": <input,id=in0,count=1,unit=item,type=tag>
+  },
+  "input1": {
+    "item": <input,id=in1,count=1,unit=item,type=solid>
+    "tag": <input,id=in1,count=1,unit=item,type=tag>
+  },
+  "result": <object,id=resStruct>
+    "count": <count,output_id=res>
+    "basePredicate": {
+      "tag": <output,id=res,count=1,unit=item,type=tag>
+      "item": <output,id=res,count=1,unit=item,type=solid>
+    }
+    "tag": <output,id=res,count=1,unit=item,type=tag>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  </object>
+}

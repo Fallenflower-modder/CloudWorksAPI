@@ -1,0 +1,14 @@
+{
+  "type": "iceandfire:dragonforge",
+  "input": {
+    "item": <input,id=inputItem,count=1,unit=item,type=solid>
+    "tag": <input,id=inputItem,count=1,unit=item,type=tag>
+  },
+  "blood": {
+    "item": <input,id=bloodItem,count=1,unit=item,type=solid>
+  },
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

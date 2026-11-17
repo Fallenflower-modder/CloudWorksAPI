@@ -1,0 +1,17 @@
+{
+  "type": "alchemistry:fission",
+  "input": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "output1": {
+    "count": <count,output_id=out1>
+    "item": <output,id=out1,count=1,unit=item,type=solid>
+    "tag": <output,id=out1,count=1,unit=item,type=tag>
+  },
+  "output2": {
+    "count": <count,output_id=out2>
+    "item": <output,id=out2,count=1,unit=item,type=solid>
+    "tag": <output,id=out2,count=1,unit=item,type=tag>
+  }
+}

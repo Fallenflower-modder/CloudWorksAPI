@@ -1,0 +1,27 @@
+{
+  "type": "mekanism:reaction",
+  "chemical_input": {
+    "amount": <amount,input_id=chemIn>,
+    "chemical": <input,id=chemIn,count=1,unit=fluid,type=fluid>,
+    "tag": <input,id=chemIn,count=1,unit=fluid,type=tag>
+  },
+  "chemical_output": {
+    "amount": <amount,output_id=chemOut>,
+    "id": <output,id=chemOut,count=1,unit=fluid,type=fluid>
+  },
+  "duration": 100,
+  "fluid_input": {
+    "amount": <amount,input_id=fluidIn>,
+    "fluid": <input,id=fluidIn,count=1,unit=fluid,type=fluid>,
+    "tag": <input,id=fluidIn,count=1,unit=fluid,type=tag>
+  },
+  "item_input": {
+    "count": <count,input_id=ingItem>,
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>,
+    "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+  },
+  "item_output": {
+    "count": <count,output_id=res>,
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

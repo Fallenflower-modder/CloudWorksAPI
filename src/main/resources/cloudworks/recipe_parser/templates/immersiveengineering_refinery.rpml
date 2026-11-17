@@ -1,0 +1,18 @@
+{
+  "type": "immersiveengineering:refinery",
+  "input0": {
+    "amount": <amount,input_id=in0>
+    "tag": <input,id=in0,count=1,unit=fluid,type=fluid>
+    "id": <input,id=in0,count=1,unit=fluid,type=fluid>
+  },
+  "input1": {
+    "amount": <amount,input_id=in1>
+    "tag": <input,id=in1,count=1,unit=fluid,type=fluid>
+    "id": <input,id=in1,count=1,unit=fluid,type=fluid>
+  },
+  "result": {
+    "amount": <amount,output_id=out>
+    "id": <output,id=out,count=1,unit=fluid,type=fluid>
+    "tag": <output,id=out,count=1,unit=fluid,type=fluid>
+  }
+}

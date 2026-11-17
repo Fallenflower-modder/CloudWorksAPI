@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "fluid": {
+    "fluid": <input,id=fluid,count=1,unit=fluid,type=fluid>
+  },
+  "ingredients": [
+    <object,id=ingStruct>
+      "count": <count,id=countIng,input_id=ingItem>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+      <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "result": {
+    "count": <count,id=countRes,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

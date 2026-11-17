@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting",
+  <optional,id=optIngredients>
+    "ingredients": [
+      <object,id=ingStruct>
+        "item": <input,id=ingItem,count=1,unit=item,type=solid>
+        "tag": <input,id=ingTag,count=1,unit=item,type=tag>
+      </object>
+      <duplicate,id=dupIng,structure=ingStruct>
+    ]
+  </optional>,
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "ingredient1": <input,id=ing1,count=1,unit=item,type=solid>
+  "ingredient2": <input,id=ing2,count=1,unit=item,type=solid>
+  "center_ingredient": <input,id=centerIng,count=1,unit=item,type=solid>
+  "result": {
+    "count": <count,id=countRes,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "ftbic:canning",
+  "inputItems": [
+    <object,id=inItemStruct>
+      "ingredient": {
+        "item": <input,id=inItem,count=1,unit=item,type=solid>
+        "tag": <input,id=inItem,count=1,unit=item,type=tag>
+      }
+    <duplicate,id=dupInItem,structure=inItemStruct>
+    </object>
+  ],
+  "outputItems": [
+    <object,id=outItemStruct>
+      "count": <count,output_id=outItem>
+      "id": <output,id=outItem,count=1,unit=item,type=solid>
+    <duplicate,id=dupOutItem,structure=outItemStruct>
+    </object>
+  ]
+}

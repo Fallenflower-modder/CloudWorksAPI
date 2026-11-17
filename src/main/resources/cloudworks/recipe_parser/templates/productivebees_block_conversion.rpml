@@ -1,0 +1,11 @@
+{
+  "type": "productivebees:block_conversion",
+  "bees": ["productivebees:ghostly"],
+  "from": {
+    "Name": <input,id=from,count=1,unit=item,type=solid>
+  },
+  "to": {
+    "Name": <output,id=to,count=1,unit=item,type=solid>
+  },
+  "chance": 0.7
+}

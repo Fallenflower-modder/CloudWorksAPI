@@ -1,0 +1,23 @@
+{
+  "cloudworks_api.command.parse.player_only": "This command can only be executed by a player.",
+  "cloudworks_api.command.parse.no_held_item": "You are not holding any item.",
+  "cloudworks_api.command.parse.invalid_id": "Invalid ID: %s",
+  "cloudworks_api.command.parse.not_found": "No recipe or item found with ID: %s",
+  "cloudworks_api.command.parse.not_enabled": "RecipeParser module is not enabled. Please check the mod configuration.",
+  "cloudworks_api.command.parse.no_recipes_for_item": "No recipes found that produce item: %s",
+  "cloudworks_api.command.parse.no_recipes_for_fluid": "No recipes found that produce fluid: %s",
+  "cloudworks_api.command.parse.recipe_not_found": "Recipe not found: %s",
+  "cloudworks_api.command.parse.parse_error": "Failed to parse recipe %s: %s",
+  "cloudworks_api.command.parse.header_item": "Found %2$s recipe(s) producing \u00a7e%1$s\u00a7r:",
+  "cloudworks_api.command.parse.header_fluid": "Found %2$s recipe(s) producing fluid \u00a7e%1$s\u00a7r:",
+  "cloudworks_api.command.parse.header_recipe": "Parsing recipe \u00a7e%s\u00a7r:",
+  "cloudworks_api.command.parse.recipe_line": "  \u00a7aRecipe:\u00a7r %s",
+  "cloudworks_api.command.parse.inputs_header": "  \u00a7bInputs:\u00a7r",
+  "cloudworks_api.command.parse.outputs_header": "  \u00a7cOutputs:\u00a7r",
+  "cloudworks_api.command.parse.ingredient_line": "    \u00a77- %s \u00d7%s %s [%s]\u00a7r",
+  "cloudworks_api.command.parse.ingredient_line_fluid": "    \u00a77- %s \u00d7%s mB [%s]\u00a7r",
+  "cloudworks_api.command.parse.product_line": "    \u00a77- %s \u00d7%s %s [%s]\u00a7r",
+  "cloudworks_api.command.parse.product_line_fluid": "    \u00a77- %s \u00d7%s mB [%s]\u00a7r",
+  "cloudworks_api.command.parse.product_line_rate": "    \u00a77- %s \u00d7%s %s [%s] \u00a76(%.0f%%)\u00a7r",
+  "cloudworks_api.command.parse.product_line_rate_fluid": "    \u00a77- %s \u00d7%s mB [%s] \u00a76(%.0f%%)\u00a7r"
+}

@@ -1,0 +1,26 @@
+{
+  "type": "youkaisfeasts:fermentation",
+  <script,set_global_fluid_transfer=true,set_global_default_transfer_rate=250>
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingTag,count=1,unit=item,type=tag>
+    </object>
+    <duplicate,id=dupIng,structure=ingStruct>
+  ],
+  "inputFluid": {
+    "amount": <amount,input_id=inFluid>
+    "id": <input,id=inFluid,count=1,unit=fluid,type=fluid>
+  },
+  "outputFluid": {
+    "amount": <amount,output_id=outFluid>
+    "id": <output,id=outFluid,count=1,unit=fluid,type=fluid>
+  },
+  "results": [
+    <object,id=resStruct>
+      "count": <count,output_id=res>
+      "id": <output,id=res,count=1,unit=item,type=solid>
+    </object>
+    <duplicate,id=dupRes,structure=resStruct>
+  ]
+}

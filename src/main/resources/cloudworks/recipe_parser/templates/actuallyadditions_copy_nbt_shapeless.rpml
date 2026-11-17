@@ -1,0 +1,19 @@
+{
+  "type": "actuallyadditions:copy_nbt_shapeless",
+  "ingredients": [
+    <object,id=ingStruct>
+      "type": "actuallyadditions:target_nbt",
+      "base": {
+        "item": <input,id=ing,count=1,unit=item,type=solid>
+        "tag": <input,id=ing,count=1,unit=item,type=tag>
+      }
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

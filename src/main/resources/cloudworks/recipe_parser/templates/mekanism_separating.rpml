@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:separating",
+  "input": {
+    "amount": <amount,input_id=fluidIn>,
+    "fluid": <input,id=fluidIn,count=1,unit=fluid,type=fluid>,
+    "tag": <input,id=fluidIn,count=1,unit=fluid,type=tag>
+  },
+  "left_chemical_output": {
+    "amount": <amount,output_id=leftOut>,
+    "id": <output,id=leftOut,count=1,unit=fluid,type=fluid>
+  },
+  "right_chemical_output": {
+    "amount": <amount,output_id=rightOut>,
+    "id": <output,id=rightOut,count=1,unit=fluid,type=fluid>
+  }
+}

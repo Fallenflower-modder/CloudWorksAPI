@@ -1,0 +1,24 @@
+{
+  "type": "ae2:entropy",
+  "input": {
+    "block": {
+      "id": <input,id=inBlock,count=1,unit=item,type=solid>
+    },
+    "fluid": {
+      "id": <input,id=inFluid,count=1,unit=fluid,type=fluid>
+    }
+  },
+  "mode": "cool",
+  "output": {
+    "block": {
+      "id": <output,id=outBlock,count=1,unit=item,type=solid>
+    },
+    "drops": [
+      <object,id=dropStruct>
+        "count": <count,output_id=dropOut>
+        "id": <output,id=dropOut,count=1,unit=item,type=solid>
+      <duplicate,id=dupDropStruct,structure=dropStruct>
+      </object>
+    ]
+  }
+}

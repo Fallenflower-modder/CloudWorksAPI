@@ -1,0 +1,25 @@
+{
+  "type": "youkaishomecoming:simple_fermentation",
+  "ingredients": [
+    <object,id=ingredientsStruct>
+      "item": <input,id=ingredientsItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingredientsItem,count=1,unit=item,type=tag>
+    <count,id=ingredientsCount,input_id=ingredientsItem>
+    <duplicate,id=dupIngredientsStruct,structure=ingredientsStruct>
+    </object>
+  ]
+  "inputFluid": <object,id=inputFluid>
+    "tag": <input,id=inputFluid,count=1,unit=fluid,type=fluid>
+  </object>
+  "outputFluid": <object,id=outputFluid>
+    "amount": <amount,output_id=outputFluid>
+    "id": <output,id=outputFluid,count=1,unit=fluid,type=fluid>
+  "results": [
+    <object,id=resultsElem>
+      "count": <count,output_id=resultsElem>
+      "id": <output,id=resultsElem,count=1,unit=item,type=solid>
+    <duplicate,id=dupResultsElem,structure=resultsElem>
+    </object>
+  ]
+  </object>
+}

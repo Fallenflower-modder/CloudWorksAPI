@@ -1,0 +1,15 @@
+{
+  "type": "alchemistry:liquifier",
+  "input": {
+    "count": <count,input_id=ing>
+    "ingredient": {
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+    }
+  },
+  "result": {
+    "amount": <amount,output_id=fl>
+    "fluid": <output,id=fl,count=1,unit=fluid,type=fluid>
+    "tag": <output,id=fl,count=1,unit=fluid,type=tag>
+  }
+}

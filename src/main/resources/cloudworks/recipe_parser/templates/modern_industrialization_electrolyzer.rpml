@@ -1,0 +1,16 @@
+{
+  "type": "modern_industrialization:electrolyzer",
+  "item_inputs": {
+    "amount": <count,id=countItemIn,input_id=itemIn>
+    "item": <input,id=itemIn,count=1,unit=item,type=solid>
+    "tag": <input,id=itemIn,count=1,unit=item,type=tag>
+  },
+  "item_outputs": {
+    "amount": <count,id=countItemOut,output_id=itemOut>
+    "item": <output,id=itemOut,count=1,unit=item,type=solid>
+  },
+  "fluid_outputs": {
+    "amount": <amount,id=amountFluidOut,output_id=fluidOut>
+    "fluid": <output,id=fluidOut,count=1,unit=fluid,type=fluid>
+  }
+}

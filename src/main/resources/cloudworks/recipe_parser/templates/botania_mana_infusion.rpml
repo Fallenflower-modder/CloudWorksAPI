@@ -1,0 +1,13 @@
+{
+  "type": "botania:mana_infusion",
+  "input": {
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>
+    "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+  },
+  "mana": 5000,
+  "output": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+    "tag": <output,id=result,count=1,unit=item,type=tag>
+  </object>
+}

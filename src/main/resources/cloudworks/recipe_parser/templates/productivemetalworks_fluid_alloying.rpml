@@ -1,0 +1,15 @@
+{
+  "type": "productivemetalworks:fluid_alloying",
+  "fluids": [
+    <object,id=fluidStruct>
+      "amount": <amount,input_id=fluid>
+      "fluid": <input,id=fluid,count=1,unit=fluid,type=fluid>
+    </object>
+    <duplicate,id=dupFluid,structure=fluidStruct>
+  ],
+  "result": {
+    "amount": <amount,output_id=out>
+    "id": <output,id=out,count=1,unit=fluid,type=fluid>
+  },
+  "speed": 10
+}

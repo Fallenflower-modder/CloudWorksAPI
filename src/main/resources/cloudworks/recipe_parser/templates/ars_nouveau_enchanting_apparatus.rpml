@@ -1,0 +1,19 @@
+{
+  "type": "ars_nouveau:enchanting_apparatus",
+  "pedestalItems": [
+    <object,id=pedestalStruct>
+      "item": <input,id=pedestalItem,count=1,unit=item,type=solid>
+      "tag": <input,id=pedestalItem,count=1,unit=item,type=tag>
+    <count,id=pedestalCount,input_id=pedestalItem>
+    <duplicate,id=dupPedestalStruct,structure=pedestalStruct>
+    </object>
+  ]
+  "reagent": {
+    "item": <input,id=reagentItem,count=1,unit=item,type=solid>
+    "tag": <input,id=reagentItem,count=1,unit=item,type=tag>
+  },
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

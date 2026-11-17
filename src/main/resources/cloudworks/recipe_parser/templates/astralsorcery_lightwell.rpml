@@ -1,0 +1,9 @@
+<script,set_global_fluid_transfer=true>
+{
+  "type": "astralsorcery:lightwell",
+  "input": {
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+  },
+  "generated_fluid": <output,id=fluid,count=1,unit=fluid,type=fluid>
+}

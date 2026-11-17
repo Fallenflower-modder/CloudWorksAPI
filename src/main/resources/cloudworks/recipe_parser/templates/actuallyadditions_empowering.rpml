@@ -1,0 +1,18 @@
+{
+  "type": "actuallyadditions:empowering",
+  "base": {
+    "item": <input,id=baseItem,count=1,unit=item,type=solid>
+    "tag": <input,id=baseItem,count=1,unit=item,type=tag>
+  },
+  "modifiers": [
+    <object,id=modStruct>
+      "item": <input,id=modItem,count=1,unit=item,type=solid>
+      "tag": <input,id=modItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupMod,structure=modStruct>
+    </object>
+  ],
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

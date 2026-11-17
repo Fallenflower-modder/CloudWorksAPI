@@ -1,0 +1,21 @@
+{
+  "type": "youkaisfeasts:cuisine_mixed",
+  "first": [
+    <object,id=firstStruct>
+      "item": <input,id=firstIng,count=1,unit=item,type=solid>
+      "tag": <input,id=firstIngTag,count=1,unit=item,type=tag>
+    </object>
+    <duplicate,id=dupFirst,structure=firstStruct>
+  ],
+  "second": [
+    <object,id=secondStruct>
+      "item": <input,id=secondIng,count=1,unit=item,type=solid>
+      "tag": <input,id=secondIngTag,count=1,unit=item,type=tag>
+    </object>
+    <duplicate,id=dupSecond,structure=secondStruct>
+  ],
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "mekanism:combining",
+  "extra_input": {
+    "count": <count,input_id=extraIn>,
+    "item": <input,id=extraIn,count=1,unit=item,type=solid>,
+    "tag": <input,id=extraIn,count=1,unit=item,type=tag>
+  },
+  "main_input": {
+    "count": <count,input_id=mainIn>,
+    "item": <input,id=mainIn,count=1,unit=item,type=solid>,
+    "tag": <input,id=mainIn,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "count": <count,output_id=res>,
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

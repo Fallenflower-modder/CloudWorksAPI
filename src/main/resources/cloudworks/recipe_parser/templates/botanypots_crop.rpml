@@ -1,0 +1,24 @@
+{
+  "type": "botanypots:crop",
+  "input": <optional,id=optInput>
+    "input": <object,id=inputObj>
+      "item": <input,id=input,count=1,unit=item,type=solid>
+    <count,id=inputCount,input_id=input>
+    </object>
+  </optional>
+  "seed": <optional,id=optSeed>
+    "seed": <object,id=seedObj>
+      "item": <input,id=seed,count=1,unit=item,type=solid>
+    <count,id=seedCount,input_id=seed>
+    </object>
+  </optional>
+  "drops": [
+    <object,id=dropsElem>
+      "chance": <chance,output_id=dropsElem>
+      "output": <object,id=dropsOutput>
+        "item": <output,id=dropsElem,count=1,unit=item,type=solid>
+    <duplicate,id=dupDropsElem,structure=dropsElem>
+      </object>
+    </object>
+  ]
+}

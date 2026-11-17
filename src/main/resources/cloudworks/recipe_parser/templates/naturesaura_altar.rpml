@@ -1,0 +1,16 @@
+{
+  "type": "naturesaura:altar",
+  "input": {
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  },
+  "catalyst": {
+    "item": <input,id=catalyst,count=1,unit=item,type=solid>
+    "tag": <input,id=catalyst,count=1,unit=item,type=tag>
+  },
+  "aura": 30000,
+  "time": 250
+}

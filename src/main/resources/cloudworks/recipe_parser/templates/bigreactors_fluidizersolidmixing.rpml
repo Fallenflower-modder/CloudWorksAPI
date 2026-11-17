@@ -1,0 +1,22 @@
+<script,set_global_fluid_transfer=true>
+{
+  "type": "bigreactors:fluidizersolidmixing",
+  "ingredient1": {
+    "count": <count,id=ing1Count,input_id=ing1>
+    "ingredient": {
+      "item": <input,id=ing1,count=1,unit=item,type=solid>
+      "tag": <input,id=ing1,count=1,unit=item,type=tag>
+    }
+  },
+  "ingredient2": {
+    "count": <count,id=ing2Count,input_id=ing2>
+    "ingredient": {
+      "item": <input,id=ing2,count=1,unit=item,type=solid>
+      "tag": <input,id=ing2,count=1,unit=item,type=tag>
+    }
+  },
+  "result": {
+    "amount": <amount,output_id=resFl>
+    "id": <output,id=resFl,count=1,unit=fluid,type=fluid>
+  }
+}

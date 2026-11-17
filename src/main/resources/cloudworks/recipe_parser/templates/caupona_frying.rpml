@@ -1,0 +1,16 @@
+{
+  "type": "caupona:frying",
+  "allow": [
+    <object,id=allowStruct>
+      "number": {
+        "tag": <input,id=allowTag,count=1,unit=fluid,type=tag>
+      }
+    <duplicate,id=dupAllow,structure=allowStruct>
+    </object>
+  ],
+  "bowl": {
+    "item": <input,id=bowlItem,count=1,unit=item,type=solid>
+    "tag": <input,id=bowlItem,count=1,unit=item,type=tag>
+  },
+  "output": <output,id=result,count=1,unit=fluid,type=fluid>
+}

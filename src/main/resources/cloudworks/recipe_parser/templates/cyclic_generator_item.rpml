@@ -1,0 +1,11 @@
+{
+  "type": "cyclic:generator_item",
+  "fuel": {
+    "item": <input,id=fuel,count=1,unit=item,type=solid>
+    "tag": <input,id=fuel,count=1,unit=item,type=tag>
+  },
+  "energy": {
+    "ticks": 300,
+    "rfpertick": 40
+  }
+}

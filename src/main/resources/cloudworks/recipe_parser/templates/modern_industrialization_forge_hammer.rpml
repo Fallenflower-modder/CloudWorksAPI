@@ -1,0 +1,11 @@
+{
+  "type": "modern_industrialization:forge_hammer",
+  "ingredient": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "result": {
+    "count": <count,id=countRes,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

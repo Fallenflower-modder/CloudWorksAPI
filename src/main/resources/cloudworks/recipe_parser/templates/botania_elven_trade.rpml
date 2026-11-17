@@ -1,0 +1,18 @@
+{
+  "type": "botania:elven_trade",
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingTag,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "output": [
+    <object,id=resStruct>
+      "count": <count,output_id=result>
+      "id": <output,id=result,count=1,unit=item,type=solid>
+      "tag": <output,id=result,count=1,unit=item,type=tag>
+    <duplicate,id=dupRes,structure=resStruct>
+    </object>
+  ]
+}

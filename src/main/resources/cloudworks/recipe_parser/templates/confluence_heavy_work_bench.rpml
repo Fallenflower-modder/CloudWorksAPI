@@ -1,0 +1,23 @@
+{
+  "type": "confluence:heavy_work_bench",
+  "key": {
+    <object,id=keyStruct>
+      <symbol,id=sym,input_id=keyIng>
+      "item": <input,id=keyIng,count=1,unit=item,type=solid>
+      "tag": <input,id=keyIng,count=1,unit=item,type=tag>
+      "type": "confluence_magic_lib:amount_ingredient",
+      "count": <count,input_id=keyIng>
+      "ingredient": {
+        "item": <input,id=keyIng,count=1,unit=item,type=solid>
+        "tag": <input,id=keyIng,count=1,unit=item,type=tag>
+      }
+    </object>
+  },
+  "pattern": [
+    <patternline,id=patLine>
+  ],
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

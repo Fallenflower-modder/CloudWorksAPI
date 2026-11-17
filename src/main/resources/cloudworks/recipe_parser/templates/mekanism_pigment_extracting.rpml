@@ -1,0 +1,12 @@
+{
+  "type": "mekanism:pigment_extracting",
+  "input": {
+    "count": <count,input_id=ingItem>,
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>,
+    "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "amount": <amount,output_id=pigOut>,
+    "id": <output,id=pigOut,count=1,unit=fluid,type=fluid>
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "mekanism:chemical_conversion",
+  "input": {
+    "count": <count,input_id=ingItem>,
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>,
+    "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "amount": <amount,output_id=chemOut>,
+    "id": <output,id=chemOut,count=1,unit=fluid,type=fluid>
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "mekanism:crushing",
+  "input": {
+    "count": <count,input_id=ingItem>,
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>,
+    "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+  },
+  "output": {
+    "count": <count,output_id=res>,
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

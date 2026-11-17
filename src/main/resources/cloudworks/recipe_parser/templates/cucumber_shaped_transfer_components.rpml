@@ -1,0 +1,18 @@
+{
+  "type": "cucumber:shaped_transfer_components",
+  "transfer_slot": 4,
+  "pattern": [
+    <patternline,id=patLine>
+  ],
+  "key": {
+    <object,id=keyStruct>
+      <symbol,id=sym,input_id=keyIng>
+      "item": <input,id=keyIng,count=1,unit=item,type=solid>
+      "tag": <input,id=keyIng,count=1,unit=item,type=tag>
+    </object>
+  },
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

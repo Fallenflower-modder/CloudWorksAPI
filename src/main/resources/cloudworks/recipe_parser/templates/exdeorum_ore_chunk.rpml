@@ -1,0 +1,7 @@
+{
+  "type": "exdeorum:ore_chunk",
+  "ore": <input,id=ore,count=1,unit=item,type=tag>
+  "ore_chunk": {
+    "item": <output,id=chunk,count=1,unit=item,type=solid>
+  }
+}

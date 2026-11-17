@@ -1,0 +1,16 @@
+{
+  "type": "bakery:blank_cake_interaction",
+  "ingredient": <object,id=ingredientObj>
+    "item": <input,id=ingredient,count=1,unit=item,type=solid>
+    "tag": <input,id=ingredient,count=1,unit=item,type=tag>
+  <count,id=ingredientCount,input_id=ingredient>
+  </object>
+  "result": <object,id=result>
+    <optional,id=optSetBlock>
+      "set_block": <output,id=resultBlock,count=1,unit=item,type=solid>
+    </optional>
+    <optional,id=optGiveItem>
+      "give_item": <output,id=resultGive,count=1,unit=item,type=solid>
+    </optional>
+  </object>
+}

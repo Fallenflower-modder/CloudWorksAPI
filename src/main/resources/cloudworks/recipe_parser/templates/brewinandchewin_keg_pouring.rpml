@@ -1,0 +1,17 @@
+{
+  "type": "brewinandchewin:keg_pouring",
+  "container": <optional,id=optContainer>
+    "container": <object,id=container>
+      "count": <count,output_id=container>
+      "id": <output,id=container,count=1,unit=item,type=solid>
+    </object>
+  </optional>
+  "fluid": <object,id=fluidObj>
+    "amount": <amount,output_id=fluid>
+    "id": <output,id=fluid,count=1,unit=fluid,type=fluid>
+  </object>
+  "output": <object,id=output>
+    "count": <count,output_id=output>
+    "id": <output,id=output,count=1,unit=item,type=solid>
+  </object>
+}

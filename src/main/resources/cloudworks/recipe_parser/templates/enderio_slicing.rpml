@@ -1,0 +1,15 @@
+{
+  "type": "enderio:slicing",
+  "energy": 20000,
+  "inputs": [
+    <object,id=ingStruct>
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ]
+  "output": {
+    "count": <count,output_id=out>
+    "id": <output,id=out,count=1,unit=item,type=solid>
+  }
+}

@@ -1,0 +1,20 @@
+<script,set_global_fluid_transfer=true>
+{
+  "type": "thermal:bottler",
+  "ingredient": [
+    <object,id=inStruct>
+      "item": <input,id=inItem,count=1,unit=item,type=solid>
+      "tag": <input,id=inItem,count=1,unit=item,type=tag>
+      "fluid": <input,id=inFl,count=1,unit=fluid,type=fluid>
+      "amount": <amount,id=inFlAmt,input_id=inFl>
+    <duplicate,id=dupIn,structure=inStruct>
+    </object>
+  ],
+  "result": [
+    <object,id=resStruct>
+      "item": <output,id=res,count=1,unit=item,type=solid>
+      "count": <count,id=resCount,output_id=res>
+    <duplicate,id=dupRes,structure=resStruct>
+    </object>
+  ]
+}

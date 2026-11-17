@@ -1,0 +1,8 @@
+{
+  "type": "immersiveengineering:fertilizer",
+  "growthModifier": 1.6,
+  "input": {
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  }
+}

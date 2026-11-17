@@ -1,0 +1,16 @@
+{
+  "type": "integrateddynamics:squeezer",
+  "input_item": {
+    "item": <input,id=inputItem,count=1,unit=item,type=solid>
+    "tag": <input,id=inputItem,count=1,unit=item,type=tag>
+  },
+  "output_items": [
+    <object,id=outStruct>
+      "item": <object,id=outItemStruct>
+        "id": <output,id=out,count=1,unit=item,type=solid>
+        "count": <count,output_id=out>
+      </object>
+    <duplicate,id=dupOut,structure=outStruct>
+    </object>
+  ]
+}

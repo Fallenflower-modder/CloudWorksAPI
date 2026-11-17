@@ -1,0 +1,14 @@
+{
+  "type": "productivebees:advanced_beehive",
+  "ingredient": "productivebees:zombie",
+  "results": [
+    <object,id=resStruct>
+      "chance": <chance,output_id=res>
+      "item": {
+        "items": <output,id=res,count=1,unit=item,type=solid>
+        "tag": <output,id=res,count=1,unit=item,type=tag>
+      }
+    </object>
+    <duplicate,id=dupRes,structure=resStruct>
+  ]
+}

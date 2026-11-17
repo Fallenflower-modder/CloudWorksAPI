@@ -1,0 +1,19 @@
+{
+  "type": "eidolon_repraised:crucible",
+  "steps": [
+    <object,id=stepStruct>
+      "items": [
+        <object,id=itemStruct>
+          "item": <input,id=stepItem,count=1,unit=item,type=solid>
+          "tag": <input,id=stepItem,count=1,unit=item,type=tag>
+        <duplicate,id=dupItemStruct,structure=itemStruct>
+        </object>
+      ]
+    <duplicate,id=dupStepStruct,structure=stepStruct>
+    </object>
+  ]
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

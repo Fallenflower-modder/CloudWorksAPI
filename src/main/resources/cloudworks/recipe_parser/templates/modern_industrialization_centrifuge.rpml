@@ -1,0 +1,15 @@
+{
+  "type": "modern_industrialization:centrifuge",
+  "fluid_inputs": {
+    "amount": <amount,id=amountFluidIn,input_id=fluidIn>
+    "fluid": <input,id=fluidIn,count=1,unit=fluid,type=fluid>
+  },
+  "item_outputs": [
+    <object,id=itemOutStruct>
+      "amount": <count,id=countItemOut,output_id=itemOut>
+      "probability": <chance,id=chanceItemOut,output_id=itemOut>
+      "item": <output,id=itemOut,count=1,unit=item,type=solid>
+      <duplicate,id=dupItemOut,structure=itemOutStruct>
+    </object>
+  ]
+}

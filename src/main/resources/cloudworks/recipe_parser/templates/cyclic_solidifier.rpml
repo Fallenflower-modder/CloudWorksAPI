@@ -1,0 +1,18 @@
+{
+  "type": "cyclic:solidifier",
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "mix": {
+    "tag": <input,id=mixTag,count=1,unit=fluid,type=tag>
+    "amount": <amount,input_id=mixTag>
+  },
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

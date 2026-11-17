@@ -1,0 +1,13 @@
+{
+  "type": "eidolon_repraised:chant_conversion",
+  "deity": "eidolon_repraised:light",
+  "input": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "min_devotion": 10.0,
+  "output": {
+    "count": <count,output_id=out>
+    "id": <output,id=out,count=1,unit=item,type=solid>
+  }
+}

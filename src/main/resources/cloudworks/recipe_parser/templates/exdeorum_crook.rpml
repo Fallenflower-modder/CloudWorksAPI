@@ -1,0 +1,11 @@
+{
+  "type": "exdeorum:crook",
+  "block_predicate": {
+    "block_tag": <input,id=blk,count=1,unit=item,type=tag>
+  },
+  "chance": <chance,output_id=res>
+  "result": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

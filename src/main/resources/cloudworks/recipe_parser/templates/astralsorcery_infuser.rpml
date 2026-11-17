@@ -1,0 +1,13 @@
+<script,set_global_fluid_transfer=true>
+{
+  "type": "astralsorcery:infuser",
+  "fluidInput": <input,id=fluid,count=1,unit=fluid,type=fluid>,
+  "input": {
+    "item": <input,id=ing,count=1,unit=item,type=solid>
+    "tag": <input,id=ing,count=1,unit=item,type=tag>
+  },
+  "output": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

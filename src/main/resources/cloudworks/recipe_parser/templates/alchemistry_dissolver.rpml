@@ -1,0 +1,24 @@
+{
+  "type": "alchemistry:dissolver",
+  "input": {
+    "ingredient": {
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+    }
+  },
+  "output": {
+    "groups": [
+      <object,id=groupStruct>
+        "results": [
+          <object,id=resStruct>
+            "count": <count,output_id=res>
+            "item": <output,id=res,count=1,unit=item,type=solid>
+            "tag": <output,id=res,count=1,unit=item,type=tag>
+          </object>
+          <duplicate,id=dupRes,structure=resStruct>
+        ]
+      </object>
+      <duplicate,id=dupGroup,structure=groupStruct>
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "astralsorcery:liquid_starlight",
+  "input": {
+    "count": <count,input_id=ing>
+    "ingredient": {
+      "item": <input,id=ing,count=1,unit=item,type=solid>
+      "tag": <input,id=ing,count=1,unit=item,type=tag>
+    }
+  },
+  "outputModifiers": [
+    <object,id=modStruct>
+      "type": "astralsorcery:drop_item",
+      "result": {
+        "count": <count,output_id=res>
+        "id": <output,id=res,count=1,unit=item,type=solid>
+      }
+    <duplicate,id=dupMod,structure=modStruct>
+    </object>
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "thermal:smelter",
+  "input": [
+    <object,id=inStruct>
+      "item": <input,id=inItem,count=1,unit=item,type=solid>
+      "tag": <input,id=inItem,count=1,unit=item,type=tag>
+      "fluid": <input,id=inFl,count=1,unit=fluid,type=fluid>
+      "amount": <amount,id=inFlAmt,input_id=inFl>
+    <duplicate,id=dupIn,structure=inStruct>
+    </object>
+  ],
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

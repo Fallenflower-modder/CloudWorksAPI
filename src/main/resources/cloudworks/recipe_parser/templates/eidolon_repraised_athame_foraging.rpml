@@ -1,0 +1,14 @@
+{
+  "type": "eidolon_repraised:athame_foraging",
+  "block": [
+    <object,id=blockStruct>
+      "item": <input,id=blockIng,count=1,unit=item,type=solid>
+      "tag": <input,id=blockIng,count=1,unit=item,type=tag>
+    <duplicate,id=dupBlock,structure=blockStruct>
+    </object>
+  ],
+  "output": {
+    "count": <count,output_id=out>
+    "id": <output,id=out,count=1,unit=item,type=solid>
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "mekanism:crystallizing",
+  "input": {
+    "amount": <amount,input_id=chemIn>,
+    "chemical": <input,id=chemIn,count=1,unit=fluid,type=fluid>,
+    "tag": <input,id=chemIn,count=1,unit=fluid,type=tag>
+  },
+  "output": {
+    "count": <count,output_id=res>,
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

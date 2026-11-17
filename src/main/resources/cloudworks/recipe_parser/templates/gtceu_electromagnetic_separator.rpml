@@ -1,0 +1,54 @@
+{
+  "type": "gtceu:electromagnetic_separator",
+  "duration": 200,
+  "inputs": {
+    "item": [
+      <object,id=inItemStruct>
+        "content": <object,id=inContentStruct>
+          "count": <count,input_id=ing>
+          "ingredient": {
+            "item": <input,id=ing,count=1,unit=item,type=solid>
+            "tag": <input,id=ing,count=1,unit=item,type=tag>
+          }
+        <duplicate,id=dupInContent,structure=inContentStruct>
+        </object>
+      <duplicate,id=dupInItem,structure=inItemStruct>
+      </object>
+    ],
+    "fluid": [
+      <object,id=inFluidStruct>
+        "content": <object,id=inFluidContentStruct>
+          "amount": <amount,input_id=inFluid>
+          "fluid": <input,id=inFluid,count=1,unit=fluid,type=fluid>
+        <duplicate,id=dupInFluidContent,structure=inFluidContentStruct>
+        </object>
+      <duplicate,id=dupInFluid,structure=inFluidStruct>
+      </object>
+    ]
+  },
+  "outputs": {
+    "item": [
+      <object,id=outItemStruct>
+        "content": <object,id=outContentStruct>
+          "count": <count,output_id=outItem>
+          "ingredient": {
+            "item": <output,id=outItem,count=1,unit=item,type=solid>
+            "tag": <output,id=outItem,count=1,unit=item,type=tag>
+          }
+        <duplicate,id=dupOutContent,structure=outContentStruct>
+        </object>
+      <duplicate,id=dupOutItem,structure=outItemStruct>
+      </object>
+    ],
+    "fluid": [
+      <object,id=outFluidStruct>
+        "content": <object,id=outFluidContentStruct>
+          "amount": <amount,output_id=outFluid>
+          "fluid": <output,id=outFluid,count=1,unit=fluid,type=fluid>
+        <duplicate,id=dupOutFluidContent,structure=outFluidContentStruct>
+        </object>
+      <duplicate,id=dupOutFluid,structure=outFluidStruct>
+      </object>
+    ]
+  }
+}

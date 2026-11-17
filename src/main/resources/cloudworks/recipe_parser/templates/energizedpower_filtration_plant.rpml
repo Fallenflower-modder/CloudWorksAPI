@@ -1,0 +1,19 @@
+{
+  "type": "energizedpower:filtration_plant",
+  "output": {
+    "output": {
+      "item": <output,id=res,count=1,unit=item,type=solid>
+    },
+    "percentages": [
+      <chance,output_id=res>
+    ]
+  },
+  "secondaryOutput": {
+    "output": {
+      "item": <output,id=res2,count=1,unit=item,type=solid>
+    },
+    "percentages": [
+      <chance,output_id=res2>
+    ]
+  }
+}

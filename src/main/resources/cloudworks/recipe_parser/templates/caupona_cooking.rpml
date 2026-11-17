@@ -1,0 +1,21 @@
+{
+  "type": "caupona:cooking",
+  "allow": [
+    <object,id=allowStruct>
+      "number": {
+        "tag": <input,id=allowTag,count=1,unit=fluid,type=tag>
+      }
+    <duplicate,id=dupAllow,structure=allowStruct>
+    </object>
+  ],
+  "base": [
+    <object,id=baseStruct>
+      "number": {
+        "tag": <input,id=baseTag,count=1,unit=fluid,type=tag>
+      },
+      "tag": <input,id=baseTag,count=1,unit=fluid,type=tag>
+    <duplicate,id=dupBase,structure=baseStruct>
+    </object>
+  ],
+  "output": <output,id=result,count=1,unit=fluid,type=fluid>
+}

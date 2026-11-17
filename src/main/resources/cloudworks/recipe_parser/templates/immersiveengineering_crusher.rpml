@@ -1,0 +1,12 @@
+{
+  "type": "immersiveengineering:crusher",
+  "input": {
+    "item": <input,id=input,count=1,unit=item,type=solid>
+    "tag": <input,id=input,count=1,unit=item,type=tag>
+  },
+  "result": <object,id=resStruct>
+    "count": <count,output_id=res>
+    "tag": <output,id=res,count=1,unit=item,type=tag>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  </object>
+}

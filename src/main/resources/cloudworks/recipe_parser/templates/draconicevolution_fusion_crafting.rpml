@@ -1,0 +1,21 @@
+{
+  "type": "draconicevolution:fusion_crafting",
+  "catalyst": {
+    "item": <input,id=catalyst,count=1,unit=item,type=solid>
+    "tag": <input,id=catalyst,count=1,unit=item,type=tag>
+  },
+  "ingredients": [
+    <object,id=ingStruct>
+      "consume": true,
+      "ingredient": {
+        "item": <input,id=ingItem,count=1,unit=item,type=solid>
+        "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+      }
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

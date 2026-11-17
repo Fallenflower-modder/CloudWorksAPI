@@ -1,0 +1,20 @@
+{
+  "type": "eidolon:crucible",
+  "steps": [
+    <object,id=stepStruct>
+      "items": [
+        <object,id=itemStruct>
+          "count": <count,input_id=ingItem>
+          "item": <input,id=ingItem,count=1,unit=item,type=solid>
+          "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+        <duplicate,id=dupItem,structure=itemStruct>
+        </object>
+      ]
+    <duplicate,id=dupStep,structure=stepStruct>
+    </object>
+  ],
+  "result": <object,id=result>
+    "count": <count,output_id=result>
+    "id": <output,id=result,count=1,unit=item,type=solid>
+  </object>
+}

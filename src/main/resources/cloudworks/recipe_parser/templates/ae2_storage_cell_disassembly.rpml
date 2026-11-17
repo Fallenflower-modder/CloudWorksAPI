@@ -1,0 +1,11 @@
+{
+  "type": "ae2:storage_cell_disassembly",
+  "cell": <input,id=ing,count=1,unit=item,type=solid>,
+  "cell_disassembly_items": [
+    <object,id=outStruct>
+      "count": <count,output_id=out>
+      "id": <output,id=out,count=1,unit=item,type=solid>
+    <duplicate,id=dupOut,structure=outStruct>
+    </object>
+  ]
+}

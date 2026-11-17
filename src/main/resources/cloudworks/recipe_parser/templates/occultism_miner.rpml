@@ -1,0 +1,15 @@
+{
+  "type": "occultism:miner",
+  "ingredient": {
+    "item": <input,id=ingItem,count=1,unit=item,type=solid>
+    "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+  },
+  "result": <object,id=result>
+    "stack": <object,id=stack>
+      "count": <count,output_id=result>
+      "id": <output,id=result,count=1,unit=item,type=solid>
+    <duplicate,id=dupStack,structure=stack>
+    </object>
+    "weight": <chance,output_id=result>
+  </object>
+}

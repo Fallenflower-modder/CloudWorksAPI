@@ -1,0 +1,20 @@
+{
+  "type": "eternal_starlight:alloy",
+  "burn_time": 400,
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+    <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "results": [
+    <object,id=resStruct>
+      "item": <object,id=resObj>
+        "id": <output,id=res,count=1,unit=item,type=solid>
+      </object>
+      "amount": <count,id=resAmt,output_id=res>
+    <duplicate,id=dupRes,structure=resStruct>
+    </object>
+  ]
+}

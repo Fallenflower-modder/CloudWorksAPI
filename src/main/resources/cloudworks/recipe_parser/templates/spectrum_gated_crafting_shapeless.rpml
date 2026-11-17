@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:gated_crafting_shapeless",
+  "ingredients": [
+    <object,id=ingStruct>
+      "item": <input,id=ingItem,count=1,unit=item,type=solid>
+      "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+      <duplicate,id=dupIng,structure=ingStruct>
+    </object>
+  ],
+  "result": {
+    "count": <count,id=countRes,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

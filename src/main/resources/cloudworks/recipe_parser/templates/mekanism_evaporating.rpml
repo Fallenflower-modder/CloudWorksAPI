@@ -1,0 +1,12 @@
+{
+  "type": "mekanism:evaporating",
+  "input": {
+    "amount": <amount,input_id=fluidIn>,
+    "fluid": <input,id=fluidIn,count=1,unit=fluid,type=fluid>,
+    "tag": <input,id=fluidIn,count=1,unit=fluid,type=tag>
+  },
+  "output": {
+    "amount": <amount,output_id=chemOut>,
+    "id": <output,id=chemOut,count=1,unit=fluid,type=fluid>
+  }
+}

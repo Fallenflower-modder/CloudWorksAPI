@@ -1,0 +1,57 @@
+{
+  "type": "gtceu:electrolyzer",
+  "inputs": {
+    "item": [
+      <object,id=inItemStruct>
+        "content": {
+          "type": "gtceu:sized",
+          "count": <count,input_id=ingItem>
+          "ingredient": {
+            "item": <input,id=ingItem,count=1,unit=item,type=solid>
+            "tag": <input,id=ingItem,count=1,unit=item,type=tag>
+          }
+        }
+      </object>
+      <duplicate,id=dupInItem,structure=inItemStruct>
+    ],
+    "fluid": [
+      <object,id=inFluidStruct>
+        "content": {
+          "ingredient": {
+            "tag": <input,id=ingFluid,count=1,unit=fluid,type=tag>
+            "fluid": <input,id=ingFluid,count=1,unit=fluid,type=fluid>
+          },
+          "amount": <amount,input_id=ingFluid>
+        }
+      </object>
+      <duplicate,id=dupInFluid,structure=inFluidStruct>
+    ]
+  },
+  "outputs": {
+    "item": [
+      <object,id=outItemStruct>
+        "content": {
+          "type": "gtceu:sized",
+          "count": <count,output_id=outItem>
+          "ingredient": {
+            "item": <output,id=outItem,count=1,unit=item,type=solid>
+            "tag": <output,id=outItem,count=1,unit=item,type=tag>
+          }
+        }
+      </object>
+      <duplicate,id=dupOutItem,structure=outItemStruct>
+    ],
+    "fluid": [
+      <object,id=outFluidStruct>
+        "content": {
+          "ingredient": {
+            "tag": <output,id=outFluid,count=1,unit=fluid,type=tag>
+            "fluid": <output,id=outFluid,count=1,unit=fluid,type=fluid>
+          },
+          "amount": <amount,output_id=outFluid>
+        }
+      </object>
+      <duplicate,id=dupOutFluid,structure=outFluidStruct>
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+<script,set_global_fluid_transfer=true>
+{
+  "type": "tconstruct:casting_table",
+  "cast": <object,id=castObj>
+    "count": <count,id=castCount,input_id=castItem>
+    "id": <input,id=castItem,count=1,unit=item,type=solid>
+    "tag": <input,id=castItem,count=1,unit=item,type=tag>
+  </object>
+  "fluid": <object,id=flObj>
+    "amount": <amount,id=flAmt,input_id=fluidIn>
+    "name": <input,id=fluidIn,count=1,unit=fluid,type=fluid>
+  </object>
+  "result": <object,id=resObj>
+    "count": <count,id=resCount,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  </object>
+}

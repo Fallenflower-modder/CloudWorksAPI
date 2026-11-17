@@ -1,0 +1,9 @@
+{
+  "type": "eternal_starlight:geyser_smoking",
+  "input": <input,id=inItem,count=1,unit=item,type=solid>
+  "input_count": <count,id=inCount,input_id=inItem>
+  "output": {
+    "count": <count,output_id=res>
+    "id": <output,id=res,count=1,unit=item,type=solid>
+  }
+}

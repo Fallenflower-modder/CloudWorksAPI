@@ -1,0 +1,20 @@
+{
+  "type": "extended_industrialization:bending_machine",
+  "duration": 100,
+  "eu": 2,
+  "item_inputs": [
+    <object,id=itemInStruct>
+      "amount": <count,id=itemInAmt,input_id=itemIn>
+      "item": <input,id=itemIn,count=1,unit=item,type=solid>
+      "tag": <input,id=itemIn,count=1,unit=item,type=tag>
+    </object>
+    <duplicate,id=dupItemIn,structure=itemInStruct>
+  ],
+  "item_outputs": [
+    <object,id=itemOutStruct>
+      "amount": <count,id=itemOutAmt,output_id=itemOut>
+      "item": <output,id=itemOut,count=1,unit=item,type=solid>
+    </object>
+    <duplicate,id=dupItemOut,structure=itemOutStruct>
+  ]
+}

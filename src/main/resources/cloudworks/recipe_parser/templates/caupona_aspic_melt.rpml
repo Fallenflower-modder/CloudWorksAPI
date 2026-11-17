@@ -1,0 +1,9 @@
+{
+  "type": "caupona:aspic_melt",
+  "aspic": {
+    "item": <input,id=aspic,count=1,unit=item,type=solid>
+    "tag": <input,id=aspic,count=1,unit=item,type=tag>
+  },
+  "amount": <amount,output_id=fl>,
+  "fluid": <output,id=fl,count=1,unit=fluid,type=fluid>
+}
